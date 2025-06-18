@@ -152,7 +152,11 @@ export function NavbarForDropdownWithMultipleLanguages() {
           href="#"
           className="mr-4 cursor-pointer py-1.5 font-medium"
         >
-          <img className="w-10 h-10" src="chaindev.png" alt="logo chaindev" />
+          <img
+            className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-20 w-auto-24 h-24"
+            src="chaindev.png"
+            alt="logo chaindev"
+          />
         </Typography>
 
         {/* Liens de navigation desktop */}

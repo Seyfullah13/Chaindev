@@ -24,7 +24,6 @@ const navLinks = [
   { label: "Contact", href: "#" },
 ];
 
-// ...existing code...
 const countries = [
   { flag: "🇺🇸", name: "English" },
   { flag: "🇪🇸", name: "Spain" },
@@ -32,7 +31,6 @@ const countries = [
   { flag: "🇹🇷", name: "Turkish" },
   { flag: "🇸🇦", name: "Arabic" },
 ];
-// ...existing code...
 
 // Sous-composant pour les liens de navigation
 import PropTypes from "prop-types";

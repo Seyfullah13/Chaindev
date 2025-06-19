@@ -18,7 +18,6 @@ import {
 
 // Données statiques
 const navLinks = [
-  { label: "Accueil", href: "#" },
   { label: "A propos", href: "#" },
   { label: "Services", href: "#" },
   { label: "Portfolio", href: "#" },

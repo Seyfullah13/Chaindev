@@ -1,9 +1,11 @@
 import "./index.css";
-import GlobalNav from "./GlobalNav.jsx";
+import GlobalNav from "./Components/GlobalNav";
+import Home from "./pages/Home";
 function App() {
   return (
     <div>
       <GlobalNav />
+      <Home />
     </div>
   );
 }

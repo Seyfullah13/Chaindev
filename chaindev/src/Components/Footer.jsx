@@ -1,6 +1,7 @@
 import { Typography } from "@material-tailwind/react";
 import githubLogo from "../assets/images/logos/github.png";
 import linkedinLogo from "../assets/images/logos/linkedin.png";
+import { Link } from "@tanstack/react-router";
 
 const currentYear = new Date().getFullYear();
 
@@ -38,6 +39,10 @@ export function FooterWithSocialLinks() {
                 alt="LinkedIn"
               />
             </a>
+            <Link to="/politique-de-confidentialite">
+              Politique de confidentialité
+            </Link>
+            <Link to="/mentions-legales">Mentions légales</Link>
           </div>
         </div>
       </div>

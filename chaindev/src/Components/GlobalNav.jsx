@@ -15,13 +15,16 @@ import {
   ChevronDownIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { Link } from "@tanstack/react-router";
+// <-- Import TanStack Router Link
+import PropTypes from "prop-types";
 
 // Données statiques
 const navLinks = [
-  { label: "A propos", href: "#" },
-  { label: "Services", href: "#" },
-  { label: "Portfolio", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: "A propos", href: "/A-propos" },
+  { label: "Services", href: "/Services" },
+  { label: "Portfolio", href: "https://www.seyfullah-ozdal.fr" }, // lien externe https
+  { label: "Contact", href: "/Contact" },
 ];
 
 const countries = [
@@ -32,9 +35,7 @@ const countries = [
   { flag: "🇸🇦", name: "Arabic" },
 ];
 
-// Sous-composant pour les liens de navigation
-import PropTypes from "prop-types";
-
+// NavLinks modifié pour gérer liens externes et internes
 function NavLinks({ links, direction = "row" }) {
   return (
     <ul
@@ -42,17 +43,32 @@ function NavLinks({ links, direction = "row" }) {
         direction === "col" ? "flex-col gap-2" : ""
       }`}
     >
-      {links.map((link) => (
-        <Typography
-          key={link.label}
-          as="li"
-          variant="small"
-          color="blue-gray"
-          className="p-1 font-medium"
-        >
-          <a href={link.href}>{link.label}</a>
-        </Typography>
-      ))}
+      {links.map((link) => {
+        const isExternal =
+          link.href.startsWith("http") || link.href.startsWith("www");
+
+        return (
+          <li key={link.label} className="p-1 font-medium">
+            {isExternal ? (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-gray-700 hover:underline"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                to={link.href}
+                className="text-blue-gray-700 hover:underline"
+              >
+                {link.label}
+              </Link>
+            )}
+          </li>
+        );
+      })}
     </ul>
   );
 }
@@ -67,7 +83,7 @@ NavLinks.propTypes = {
   direction: PropTypes.oneOf(["row", "col"]),
 };
 
-// Sous-composant pour le sélecteur de langue
+// LanguageSelector inchangé
 function LanguageSelector({
   open,
   setOpen,

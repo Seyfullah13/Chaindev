@@ -12,6 +12,7 @@ import Navbar from "../Components/GlobalNav";
 import Footer from "../Components/Footer";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import LegalNotice from "../pages/LegalNotice";
+import About from "../pages/About";
 // 1) Définition de la route "racine" (layout global)
 const rootRoute = createRootRoute({
   component: () => (
@@ -39,12 +40,18 @@ const legalNoticeRoute = createRoute({
   path: "/mentions-legales",
   component: LegalNotice,
 });
+const AboutRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/A-propos",
+  component: About,
+});
 // 3) Création du router
 export const router = createRouter({
   routeTree: rootRoute.addChildren([
     homeRoute,
     privacyPolicyRoute,
     legalNoticeRoute,
+    AboutRoute,
   ]),
   history: createBrowserHistory(),
 });

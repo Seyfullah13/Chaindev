@@ -1,227 +1,206 @@
-import React from "react";
-import {
-  Navbar,
-  Collapse,
-  Typography,
-  Button,
-  IconButton,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-} from "@material-tailwind/react";
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "@tanstack/react-router";
 import {
   Bars3Icon,
-  ChevronDownIcon,
   XMarkIcon,
+  ChevronDownIcon,
 } from "@heroicons/react/24/outline";
-import { Link } from "@tanstack/react-router";
-// <-- Import TanStack Router Link
-import PropTypes from "prop-types";
 
-// Données statiques
+// Liens de navigation
 const navLinks = [
-  { label: "A propos", href: "/A-propos" },
-  { label: "Services", href: "/Services" },
-  { label: "Portfolio", href: "https://www.seyfullah-ozdal.fr" }, // lien externe https
-  { label: "Contact", href: "/Contact" },
+  { label: "À propos", href: "/a-propos" },
+  { label: "Services", href: "/services" },
+  { label: "Portfolio", href: "https://www.seyfullah-ozdal.fr" },
+  { label: "Contact", href: "/contact" },
 ];
 
-const countries = [
-  { flag: "🇺🇸", name: "English" },
-  { flag: "🇪🇸", name: "Spain" },
-  { flag: "🇫🇷", name: "France" },
-  { flag: "🇹🇷", name: "Turkish" },
-  { flag: "🇸🇦", name: "Arabic" },
+// Langues disponibles
+const languages = [
+  { code: "en", label: "English", flag: "🇺🇸" },
+  { code: "es", label: "Español", flag: "🇪🇸" },
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "tr", label: "Türkçe", flag: "🇹🇷" },
+  { code: "ar", label: "العربية", flag: "🇸🇦" },
 ];
 
-// NavLinks modifié pour gérer liens externes et internes
-function NavLinks({ links, direction = "row" }) {
-  return (
-    <ul
-      className={`flex items-center gap-6 ${
-        direction === "col" ? "flex-col gap-2" : ""
-      }`}
-    >
-      {links.map((link) => {
-        const isExternal =
-          link.href.startsWith("http") || link.href.startsWith("www");
-
-        return (
-          <li key={link.label} className="p-1 font-medium">
-            {isExternal ? (
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-gray-700 hover:underline"
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link
-                to={link.href}
-                className="text-blue-gray-700 hover:underline"
-              >
-                {link.label}
-              </Link>
-            )}
-          </li>
-        );
-      })}
-    </ul>
-  );
+// Hook pour fermer au clic en dehors
+function useClickOutside(ref, handler) {
+  useEffect(() => {
+    const listener = (e) => {
+      if (!ref.current || ref.current.contains(e.target)) return;
+      handler();
+    };
+    document.addEventListener("mousedown", listener);
+    return () => document.removeEventListener("mousedown", listener);
+  }, [ref, handler]);
 }
 
-NavLinks.propTypes = {
-  links: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      href: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  direction: PropTypes.oneOf(["row", "col"]),
-};
+export default function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState(languages[2]); // Français par défaut
 
-// LanguageSelector inchangé
-function LanguageSelector({
-  open,
-  setOpen,
-  lang,
-  setLang,
-  countries,
-  buttonProps = {},
-  menuListClass = "",
-}) {
-  return (
-    <Menu open={open} handler={setOpen}>
-      <MenuHandler>
-        <Button
-          size="sm"
-          variant="outlined"
-          className={`flex items-center gap-2 ${
-            buttonProps.fullWidth ? "w-full justify-center" : ""
-          }`}
-          {...buttonProps}
-        >
-          <span>{countries.find((c) => c.name === lang)?.flag}</span>
-          {lang}
-          <ChevronDownIcon
-            strokeWidth={2.5}
-            className={open ? "transform rotate-180 h-4 w-4" : "h-4 w-4"}
-          />
-        </Button>
-      </MenuHandler>
-      <MenuList className={`max-h-72 ${menuListClass}`}>
-        {countries.map(({ name, flag }) => (
-          <MenuItem
-            key={name}
-            className="flex gap-2"
-            onClick={() => {
-              setLang(name);
-              setOpen(false);
-            }}
-          >
-            {flag} {name}
-          </MenuItem>
-        ))}
-      </MenuList>
-    </Menu>
-  );
-}
-
-LanguageSelector.propTypes = {
-  open: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired,
-  lang: PropTypes.string.isRequired,
-  setLang: PropTypes.func.isRequired,
-  countries: PropTypes.arrayOf(
-    PropTypes.shape({
-      flag: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  buttonProps: PropTypes.object,
-  menuListClass: PropTypes.string,
-};
-
-export function NavbarForDropdownWithMultipleLanguages() {
-  const [openLangMenuDesktop, setOpenLangMenuDesktop] = React.useState(false);
-  const [openLangMenuMobile, setOpenLangMenuMobile] = React.useState(false);
-  const [openNav, setOpenNav] = React.useState(false);
-  const [lang, setLang] = React.useState("English");
-
-  React.useEffect(() => {
-    const handleResize = () => window.innerWidth >= 960 && setOpenNav(false);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+  // fermer menu mobile au resize desktop
+  useEffect(() => {
+    const onResize = () => window.innerWidth >= 1024 && setMobileOpen(false);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
+  // click outside dropdown
+  const langRef = useRef(null);
+  useClickOutside(langRef, () => setLangOpen(false));
+
   return (
-    <Navbar className="bg-black mx-auto -xl px-4 py-2 lg:px-8 lg:py-4">
-      <div className="flex items-center justify-between text-blue-gray-900">
-        <Typography
-          as="a"
-          href="/"
-          className="mr-4 cursor-pointer py-1.5 font-medium"
-        >
+    <header className="bg-black text-white sticky top-0 z-50">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3 lg:py-4">
+        {/* Logo */}
+        <Link to="/" className="flex items-center">
           <img
-            className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-20 w-auto-24 h-24"
             src="chaindev.png"
             alt="logo chaindev"
+            className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-20"
           />
-        </Typography>
+        </Link>
 
-        {/* Liens de navigation desktop */}
-        <div className="hidden lg:block">
-          <NavLinks links={navLinks} />
-        </div>
+        {/* Desktop nav */}
+        <nav className="hidden lg:flex items-center space-x-8">
+          {navLinks.map(({ label, href }) =>
+            href.startsWith("http") ? (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                {label}
+              </a>
+            ) : (
+              <Link key={label} to={href} className="hover:underline">
+                {label}
+              </Link>
+            )
+          )}
 
-        {/* Sélecteur de langue desktop */}
-        <div className="hidden lg:flex items-center gap-2">
-          <LanguageSelector
-            open={openLangMenuDesktop}
-            setOpen={setOpenLangMenuDesktop}
-            lang={lang}
-            setLang={setLang}
-            countries={countries}
-            menuListClass="w-24"
-          />
-        </div>
+          {/* Language dropdown desktop */}
+          <div ref={langRef} className="relative">
+            <button
+              onClick={() => setLangOpen((o) => !o)}
+              className="flex items-center gap-1 border border-white px-3 py-1 rounded hover:bg-white hover:text-black transition"
+              aria-haspopup="true"
+              aria-expanded={langOpen}
+            >
+              <span>{currentLang.flag}</span>
+              <span className="hidden sm:inline">
+                {currentLang.code.toUpperCase()}
+              </span>
+              <ChevronDownIcon
+                className={`h-4 w-4 transition-transform ${
+                  langOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+            {langOpen && (
+              <ul className="absolute right-0 mt-2 w-32 bg-white text-black rounded shadow-lg overflow-hidden">
+                {languages.map((lang) => (
+                  <li key={lang.code}>
+                    <button
+                      onClick={() => {
+                        setCurrentLang(lang);
+                        setLangOpen(false);
+                      }}
+                      className="w-full text-left px-3 py-2 hover:bg-gray-200 flex items-center gap-2"
+                    >
+                      <span>{lang.flag}</span>
+                      <span>{lang.label}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </nav>
 
-        {/* Bouton menu mobile */}
-        <IconButton
-          className="lg:hidden relative z-50 flex items-center justify-center"
-          variant="text"
-          onClick={() => setOpenNav((prev) => !prev)}
+        {/* Burger button mobile */}
+        <button
+          className="lg:hidden p-2"
+          onClick={() => setMobileOpen((o) => !o)}
+          aria-label="Ouvrir le menu"
         >
-          {openNav ? (
+          {mobileOpen ? (
             <XMarkIcon className="h-6 w-6" />
           ) : (
             <Bars3Icon className="h-6 w-6" />
           )}
-        </IconButton>
+        </button>
       </div>
 
-      {/* Menu mobile */}
-      {openNav && (
-        <Collapse open={openNav} className="lg:hidden">
-          <div className="flex flex-col gap-4 mt-2">
-            <NavLinks links={navLinks} direction="col" />
-            <LanguageSelector
-              open={openLangMenuMobile}
-              setOpen={setOpenLangMenuMobile}
-              lang={lang}
-              setLang={setLang}
-              countries={countries}
-              buttonProps={{ fullWidth: true }}
-              menuListClass="w-full"
-            />
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="lg:hidden bg-black px-4 pb-4 space-y-4">
+          {navLinks.map(({ label, href }) =>
+            href.startsWith("http") ? (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block hover:underline"
+                onClick={() => setMobileOpen(false)}
+              >
+                {label}
+              </a>
+            ) : (
+              <Link
+                key={label}
+                to={href}
+                className="block hover:underline"
+                onClick={() => setMobileOpen(false)}
+              >
+                {label}
+              </Link>
+            )
+          )}
+
+          {/* Language dropdown mobile */}
+          <div ref={langRef} className="relative">
+            <button
+              onClick={() => setLangOpen((o) => !o)}
+              className="flex items-center gap-1 w-full border border-white px-3 py-2 rounded hover:bg-white hover:text-black transition"
+              aria-haspopup="true"
+              aria-expanded={langOpen}
+            >
+              <span>{currentLang.flag}</span>
+              <span>{currentLang.label}</span>
+              <ChevronDownIcon
+                className={`h-4 w-4 transition-transform ${
+                  langOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+            {langOpen && (
+              <ul className="absolute left-0 mt-1 w-full bg-white text-black rounded shadow-lg overflow-hidden">
+                {languages.map((lang) => (
+                  <li key={lang.code}>
+                    <button
+                      onClick={() => {
+                        setCurrentLang(lang);
+                        setLangOpen(false);
+                        setMobileOpen(false);
+                      }}
+                      className="w-full text-left px-3 py-2 hover:bg-gray-200 flex items-center gap-2"
+                    >
+                      <span>{lang.flag}</span>
+                      <span>{lang.label}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-        </Collapse>
+        </div>
       )}
-    </Navbar>
+    </header>
   );
 }
-
-export default NavbarForDropdownWithMultipleLanguages;

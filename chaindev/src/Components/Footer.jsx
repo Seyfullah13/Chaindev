@@ -8,45 +8,60 @@ const currentYear = new Date().getFullYear();
 
 export function FooterWithSocialLinks() {
   return (
-    <footer className="sticky bottom-0 w-full z-50 bg-black">
-      <div className="mx-auto w-full px-8">
-        <div className="flex w-full flex-col items-center justify-center border-t border-blue-gray-50 py-4">
+    <footer className="bg-black text-white w-full sticky bottom-0 z-50 ">
+      <div className="mx-auto w-full max-w-screen-xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-blue-gray-100 pt-6">
+          {/* Copyright */}
           <Typography
             variant="small"
-            className="text-center font-normal text-white"
+            className="text-center sm:text-left text-sm"
           >
             &copy; {currentYear} Chaindev. Tous droits réservés.
           </Typography>
-          <div className="flex items-center justify-center mt-2 space-x-4 text-white">
+
+          {/* Liens et icônes */}
+          <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
+            {/* GitHub */}
             <a
               href="https://github.com/Seyfullah13"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Lien vers GitHub"
+              className="transition-opacity hover:opacity-80"
             >
               <img
-                className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto object-contain"
                 src={githubLogo}
                 alt="GitHub"
+                className="w-6 md:w-8 aspect-square object-contain"
               />
             </a>
+
+            {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/seyfullah-ozdal"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Lien vers LinkedIn"
+              className="transition-opacity hover:opacity-80"
             >
               <img
-                className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto object-contain"
                 src={linkedinLogo}
                 alt="LinkedIn"
+                className="w-6 md:w-8 aspect-square object-contain"
               />
             </a>
+
+            {/* Liens internes */}
             <Link
               to="/politique-de-confidentialite"
-              className="hover:underline"
+              className="hover:underline transition-colors"
             >
               Politique de confidentialité
             </Link>
-            <Link to="/mentions-legales" className="hover:underline">
+            <Link
+              to="/mentions-legales"
+              className="hover:underline transition-colors"
+            >
               Mentions légales
             </Link>
           </div>

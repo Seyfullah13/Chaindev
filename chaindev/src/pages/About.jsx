@@ -1,73 +1,97 @@
 import React from "react";
 import image from "../assets/images/Bacgroundimg.png";
 import profilImg from "../assets/images/profil-img.png";
+import flagsImg from "../assets/images/multilingue.png";
 
 function About() {
   return (
     <main
-      className="min-h-screen w-full bg-cover bg-center flex items-center justify-center px-6 py-12 md:py-24"
-      style={{ backgroundImage: `url(${image})` }}
+      role="main"
       aria-label="Présentation Chaindev - À propos"
+      className="relative w-full min-h-screen bg-cover bg-right-top flex flex-col items-center justify-start px-4 pt-6 sm:pt-8 md:pt-10"
+      style={{ backgroundImage: `url(${image})` }}
     >
-      <div className="max-w-6xl w-full space-y-8">
-        {/* Titre hors encadré */}
-        <h1 className="text-4xl md:text-6xl font-bold text-white text-center">
-          À propos de Chaindev
-        </h1>
+      {/* Titre principal */}
+      <h1
+        id="about-title"
+        className="text-center text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-16"
+      >
+        À propos
+      </h1>
 
-        <div className="flex flex-col md:flex-row items-center w-full gap-8">
-          {/* Encadré texte */}
-          <section className="flex-1 bg-black/60 rounded-lg p-6 text-white text-base md:text-lg leading-relaxed">
-            <header className="mb-6">
-              <p className="text-lg md:text-2xl font-semibold max-w-xl leading-relaxed">
-                Passionné par la technologie et les langues, j’ai choisi de me
-                reconvertir dans le développement web pour offrir des solutions
-                personnalisées adaptées à un public international.
-              </p>
-            </header>
+      <div className="max-w-[90%] mx-auto flex flex-col md:flex-row md:justify-between items-start gap-8">
+        {/* Colonne de gauche - texte + images mobile */}
+        <section
+          aria-labelledby="about-title"
+          className="flex-1 w-full bg-black bg-opacity-75 rounded-lg p-4 sm:p-6 flex flex-row md:flex-col gap-4 md:max-w-2xl items-start text-white"
+        >
+          <div className="flex-1 flex flex-col gap-4">
+            <p className="text-base md:text-lg leading-relaxed mb-4">
+              Passionné par la tech et les langues, j’ai opéré une reconversion
+              en développement web, alliant vision business et ouverture
+              internationale.
+            </p>
 
-            <div>
-              <p className="font-semibold mb-4">Mon approche :</p>
-              <ul className="list-disc list-inside space-y-2">
-                <li>
-                  <strong>Précision :</strong> un code propre, performant et
-                  durable.
-                </li>
-                <li>
-                  <strong>Agilité :</strong> ajustements rapides et flexibles
-                  selon vos besoins.
-                </li>
-                <li>
-                  <strong>Impact :</strong> chaque fonctionnalité est pensée
-                  pour un résultat concret.
-                </li>
-                <li>
-                  <strong>Clarté :</strong> communication transparente avec des
-                  étapes bien définies.
-                </li>
-                <li>
-                  <strong>Évolutivité :</strong> une architecture qui grandit
-                  avec votre projet.
-                </li>
-              </ul>
+            <h2 className="font-semibold mb-4 text-lg">Mon approche :</h2>
+            <ul className="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
+              <li>
+                <strong>Précision :</strong> un code soigné, performant et
+                pérenne.
+              </li>
+              <li>
+                <strong>Agilité :</strong> interactions courtes pour ajuster en
+                temps réel.
+              </li>
+              <li>
+                <strong>Impact :</strong> chaque fonctionnalité vise un résultat
+                concret.
+              </li>
+              <li>
+                <strong>Clarté :</strong> communication transparente et jalons
+                affichés.
+              </li>
+              <li>
+                <strong>Évolutivité :</strong> architectures qui grandissent
+                avec votre projet.
+              </li>
+              <li>
+                <strong>Multilingue intégré :</strong> turc, anglais, espagnol,
+                italien, arabe, français.
+              </li>
+            </ul>
 
-              <p className="mt-6">
-                Multilingue, je travaille en turc, anglais, espagnol, italien,
-                arabe et français pour vous accompagner partout dans le monde.
-              </p>
-              <p className="mt-4">
-                Choisissez un freelance qui combine développement et
-                localisation pour maximiser votre présence web internationale.
-              </p>
-            </div>
-          </section>
+            <p className="mt-6 text-base md:text-lg leading-relaxed mb-6">
+              Choisissez un freelance qui code, localise et maximise votre
+              présence web internationale.
+            </p>
+          </div>
 
-          {/* Image de profil */}
+          {/* Images mobile à droite du texte */}
+          <div className="flex flex-col items-center gap-20 ml-4 md:hidden">
+            <img
+              src={profilImg}
+              alt="Chaindev, développeur full-stack multilingue"
+              className="w-24 sm:w-32 h-auto rounded-full object-cover border-4 border-white"
+            />
+            <img
+              src={flagsImg}
+              alt="Icônes des langues : turc, anglais, espagnol, italien, arabe, français"
+              className="w-24 sm:w-32 h-auto object-contain"
+            />
+          </div>
+        </section>
+
+        {/* Colonne de droite - images desktop/tablette */}
+        <div className="hidden md:flex flex-col items-center gap-24 lg:gap-32 mt-6 md:mt-0 md:ml-24 lg:ml-32 xl:ml-40">
           <img
             src={profilImg}
-            className="h-auto w-56 rounded-[5px]"
-            alt="Profile"
-            aria-label="Profile image"
+            alt="Chaindev, développeur full-stack multilingue"
+            className="w-32 sm:w-40 md:w-48 h-auto rounded-full object-cover border-4 border-white"
+          />
+          <img
+            src={flagsImg}
+            alt="Icônes des langues : turc, anglais, espagnol, italien, arabe, français"
+            className="w-28 sm:w-36 md:w-40 h-auto object-contain"
           />
         </div>
       </div>

@@ -4,11 +4,12 @@ import image from "../assets/images/Bacgroundimg.png";
 function Home() {
   return (
     <main
+      role="main"
+      aria-label="Présentation Chaindev"
       className="min-h-screen w-full bg-cover bg-center flex flex-col items-center justify-start px-4 py-8"
       style={{ backgroundImage: `url(${image})` }}
-      aria-label="Présentation Chaindev"
     >
-      <header className="w-full max-w-2xl text-center mt-6">
+      <header className="w-full max-w-4xl text-center mt-6 px-2">
         <h1 className="text-white text-3xl md:text-5xl font-bold mb-4">
           Chaindev
         </h1>
@@ -17,19 +18,24 @@ function Home() {
         </h2>
       </header>
 
-      <section className="w-full max-w-2xl bg-black/60 rounded-lg p-4 mt-4 mb-4">
-        <p className="text-white text-base md:text-lg mb-2">
-          Solutions web sur mesure incluant développement, infrastructure
-        </p>
-        <p className="text-white text-base md:text-lg mb-2">
+      <section className="w-full max-w-4xl bg-black rounded-lg p-4 sm:p-6 mt-4 mb-4 shadow-lg">
+        <p className="text-white text-base sm:text-lg mb-2">
           Solutions web sur mesure incluant développement, infrastructure
           sécurisée et assistance technique permanente.
         </p>
       </section>
 
-      <section className="w-full max-w-2xl bg-black/60 rounded-lg p-4 mb-4">
-        <h3 className="text-white text-xl font-semibold mb-2">Qui suis-je ?</h3>
-        <p className="text-white text-base md:text-lg">
+      <section
+        className="w-full max-w-4xl bg-black rounded-lg p-4 sm:p-6 mb-6 shadow-lg"
+        aria-labelledby="home-who-title"
+      >
+        <h3
+          id="home-who-title"
+          className="text-white text-xl sm:text-2xl font-semibold mb-2"
+        >
+          Qui suis-je ?
+        </h3>
+        <p className="text-white text-base sm:text-lg leading-relaxed">
           Développeur Fullstack Freelance et multilingue React, Symfony, PHP,
           Docker, je crée des sites web sur mesure prêts pour l'international.
           Un seul prestataire pour le développement et la traduction : EN, AR,
@@ -39,7 +45,7 @@ function Home() {
         </p>
       </section>
 
-      <div className="flex flex-col sm:flex-row gap-4 mb-4">
+      <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-6">
         <button
           type="button"
           className="
@@ -51,6 +57,7 @@ function Home() {
             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5ED4E8]
           "
           onClick={() => {}}
+          aria-label="Obtenir un devis pour un projet web"
         >
           Obtenir un devis
         </button>
@@ -66,6 +73,7 @@ function Home() {
             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5ED4E8]
           "
           onClick={() => {}}
+          aria-label="Discuter de votre projet web avec Chaindev"
         >
           Discutons du projet
         </button>

@@ -7,13 +7,13 @@ import {
   createRoute,
   Outlet,
 } from "@tanstack/react-router";
-import Home from "../pages/Home";
-import Navbar from "../Components/GlobalNav";
-import Footer from "../Components/Footer";
-import PrivacyPolicy from "../pages/PrivacyPolicy";
-import LegalNotice from "../pages/LegalNotice";
-import About from "../pages/About";
-import Services from "../pages/Services";
+import Home from "../../pages/Home/Home";
+import Navbar from "../layouts/GlobalNav";
+import Footer from "../layouts/Footer";
+import PrivacyPolicy from "../../pages/Privacypolicy/PrivacyPolicy";
+import LegalNotice from "../../pages/Legalnotice/LegalNotice";
+import About from "../../pages/About/About";
+import Services from "../../pages/Services/Services";
 // 1) Définition de la route "racine" (layout global)
 const rootRoute = createRootRoute({
   component: () => (

@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../assets/images/Bacgroundimg.png";
+import image from "../../assets/images/Bacgroundimg.png";
 
 function Home() {
   return (

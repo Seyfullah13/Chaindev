@@ -1,7 +1,7 @@
 import React from "react";
-import image from "../assets/images/Bacgroundimg.png";
-import profilImg from "../assets/images/profil-img.png";
-import flagsImg from "../assets/images/multilingue.png";
+import image from "../../assets/images/Bacgroundimg.png";
+import profilImg from "../../assets/images/profil-img.png";
+import flagsImg from "../../assets/images/multilingue.png";
 
 function About() {
   return (

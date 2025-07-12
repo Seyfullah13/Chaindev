@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "@tanstack/react-router";
-import { router } from "./Components/router.jsx";
-import "./index.css";
+import { router } from "./Components/layouts/router.jsx";
+import "./styles/index.css";
 import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(

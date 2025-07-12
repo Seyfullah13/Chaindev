@@ -13,6 +13,7 @@ import Footer from "../Components/Footer";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import LegalNotice from "../pages/LegalNotice";
 import About from "../pages/About";
+import Services from "../pages/Services";
 // 1) Définition de la route "racine" (layout global)
 const rootRoute = createRootRoute({
   component: () => (
@@ -45,6 +46,11 @@ const AboutRoute = createRoute({
   path: "/A-propos",
   component: About,
 });
+const ServicesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/Services",
+  component: Services,
+});
 // 3) Création du router
 export const router = createRouter({
   routeTree: rootRoute.addChildren([
@@ -52,6 +58,7 @@ export const router = createRouter({
     privacyPolicyRoute,
     legalNoticeRoute,
     AboutRoute,
+    ServicesRoute,
   ]),
   history: createBrowserHistory(),
 });

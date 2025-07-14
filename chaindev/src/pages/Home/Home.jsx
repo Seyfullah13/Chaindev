@@ -57,22 +57,6 @@ function Home() {
             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5ED4E8]
           "
           onClick={() => {}}
-          aria-label="Obtenir un devis pour un projet web"
-        >
-          Obtenir un devis
-        </button>
-
-        <button
-          type="button"
-          className="
-            px-6 py-2
-            bg-[#A8F6FF] hover:bg-[#5ED4E8]
-            text-[#121212] font-bold
-            rounded-full
-            transition-colors transition-shadow duration-200
-            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5ED4E8]
-          "
-          onClick={() => {}}
           aria-label="Discuter de votre projet web avec Chaindev"
         >
           Discutons du projet

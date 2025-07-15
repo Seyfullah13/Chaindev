@@ -13,7 +13,7 @@ function Home() {
         <h1 className="text-white text-3xl md:text-5xl font-bold mb-4">
           Chaindev
         </h1>
-        <h2 className="text-white text-lg md:text-2xl font-semibold mb-2">
+        <h2 className="text-white text-lg md:text-2xl font-semibold mb-2 bg-black rounded-lg p-2 sm:p-6 shadow-lg">
           "Chaindev : de l'idée à la réalisation web adaptée à tous"
         </h2>
       </header>

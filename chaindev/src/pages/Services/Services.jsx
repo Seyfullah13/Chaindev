@@ -28,381 +28,108 @@ function CheckIcon() {
   );
 }
 
-export function PricingCard() {
+// Données des offres
+const plans = [
+  {
+    id: "vitrine",
+    title: "Site Vitrine",
+    price: "1080 € TTC",
+    features: [
+      "Pages : Accueil, À propos, Services, Contact",
+      "Formulaire de contact, Google Maps, galerie d’images",
+      "Accessibilité WCAG 2.1, mobile/tablette",
+      "SEO on-page (balises, sitemap, meta)",
+      "CI/CD GitLab, back-office simple",
+    ],
+  },
+  {
+    id: "ecommerce",
+    title: "Site E-Commerce",
+    price: "2160 € TTC",
+    features: [
+      "Catalogue produits, filtres dynamiques",
+      "Paiement Stripe/PayPal, tunnel de commande",
+      "Gestion des stocks & commandes via back-office",
+      "Statistiques via Matomo ou Google Analytics",
+    ],
+  },
+  {
+    id: "traduction",
+    title: "Traduction Web",
+    price: "30 € TTC / page / langue",
+    features: [
+      "Traduction contenus, interface & navigation",
+      "Intégration Symfony Translator",
+      "Routage i18n, URL localisées & fallback",
+      "Optimisation SEO Multilingue",
+      "Ajout de langue possible à tout moment",
+    ],
+  },
+  {
+    id: "hebergement",
+    title: "Hébergement & Maintenance",
+    price: "300 € TTC / mois",
+    features: [
+      "Hébergement OVH cloud/VPS, SSL Let's Encrypt",
+      "Déploiement CI/CD automatisé, tests unitaires & fonctionnels",
+      "3 évolutions/corrections mensuelles",
+      "Monitoring uptime & Core Web Vitals",
+      "Mise à jour de sécurité Symfony",
+    ],
+  },
+];
+
+// Composant générique de carte
+export function PlanCard({ title, price, features }) {
   return (
-    <>
-      <Card
-        className="w-full max-w-[20rem] p-8 bg-black bg-opacity-90 "
-        shadow={true}
+    <Card className="w-full max-w-[20rem] p-8 bg-black bg-opacity-90" shadow>
+      <CardHeader
+        floated={false}
+        shadow={false}
+        color="transparent"
+        className="m-0 mb-8 rounded-none border-b border-white/10 pb-8 text-center"
       >
-        <CardHeader
-          floated={false}
-          shadow={false}
-          color="transparent"
-          className="m-0 mb-8 rounded-none border-b border-white/10 pb-8 text-center"
+        <Typography variant="small" color="white" className="uppercase">
+          {title}
+        </Typography>
+        <Typography
+          variant="h1"
+          color="white"
+          className="mt-6 flex justify-center gap-1 text-7xl"
         >
-          <Typography
-            variant="small"
-            color="white"
-            className="font-normal uppercase"
-          >
-            Site Vitrine
-          </Typography>
-          <Typography
-            variant="h1"
-            color="white"
-            className="mt-6 flex justify-center gap-1 text-7xl font-normal"
-          >
-            <span className="mt-2 text-4xl"> Forfait :1080 € TTC </span>{" "}
-          </Typography>
-        </CardHeader>
-        <CardBody className="p-0">
-          <ul className="flex flex-col gap-4">
-            <li className="flex items-center gap-4">
+          <span className="mt-2 text-4xl">{price}</span>
+        </Typography>
+      </CardHeader>
+      <CardBody className="p-0">
+        <ul className="flex flex-col gap-4">
+          {features.map((f, i) => (
+            <li key={i} className="flex items-center gap-4 text-white">
               <span className="rounded-full border border-white/20 bg-white/20 p-1">
                 <CheckIcon />
               </span>
-              <Typography className="font-normal text-white">
-                Pages : Accueil, A propos, Services, Contact
-              </Typography>
+              <Typography className="font-normal">{f}</Typography>
             </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                Formulaire de contact, Google Maps, galerie d'images
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                Accessibilité WCAG 2.1, mobile/tablette
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                {" "}
-                SEO on-page (balises,sitemap,meta)
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                {" "}
-                CI/CD Gitlab, back-office simple
-              </Typography>
-            </li>
-          </ul>
-        </CardBody>
-        <CardFooter className="mt-12 p-0">
-          <Button
-            size="lg"
-            color="white"
-            className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
-            ripple={false}
-            fullWidth={true}
-          >
-            Obtenir un devis
-          </Button>
-        </CardFooter>
-      </Card>
-      <Card
-        className="w-full max-w-[20rem] p-8 bg-black bg-opacity-90"
-        shadow={true}
-      >
-        <CardHeader
-          floated={false}
-          shadow={false}
-          color="transparent"
-          className="m-0 mb-8 rounded-none border-b border-white/10 pb-8 text-center"
-        >
-          <Typography
-            variant="small"
-            color="white"
-            className="font-normal uppercase"
-          >
-            Site E-Commerce
-          </Typography>
-          <Typography
-            variant="h1"
-            color="white"
-            className="mt-6 flex justify-center gap-1 text-7xl font-normal"
-          >
-            <span className="mt-2 text-4xl"> Forfait :2160 € TTC </span>{" "}
-          </Typography>
-        </CardHeader>
-        <CardBody className="p-0">
-          <ul className="flex flex-col gap-4">
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                Catalogue produits, filtres dynamiques
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                Paiement Stripe/Paypal, tunnel de commande
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                Gestion des stocks & commandes via back-office
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                {" "}
-                Statistiques via Matomo ou Google Analytics
-              </Typography>
-            </li>
-          </ul>
-        </CardBody>
-        <CardFooter className="mt-12 p-0">
-          <Button
-            size="lg"
-            color="white"
-            className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
-            ripple={false}
-            fullWidth={true}
-          >
-            Obtenir un devis
-          </Button>
-        </CardFooter>
-      </Card>
-      <Card
-        className="w-full max-w-[20rem] p-8 bg-black bg-opacity-90"
-        shadow={true}
-      >
-        <CardHeader
-          floated={false}
-          shadow={false}
-          color="transparent"
-          className="m-0 mb-8 rounded-none border-b border-white/10 pb-8 text-center"
-        >
-          <Typography
-            variant="small"
-            color="white"
-            className="font-normal uppercase"
-          >
-            Traduction Web
-          </Typography>
-          <Typography
-            variant="h1"
-            color="white"
-            className="mt-6 flex justify-center gap-1 text-7xl font-normal"
-          >
-            <span className="mt-2 text-4xl"> 30 € TTC /page /langue </span>{" "}
-          </Typography>
-        </CardHeader>
-        <CardBody className="p-0">
-          <ul className="flex flex-col gap-4">
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                Traduction contenus,interface & navigation
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                Integration Symfony Translator
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                Routage i18n, URL localisées & fallback
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                {" "}
-                Optimisation SEO Multilingue
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                {" "}
-                Ajout de langue possible à tout moment
-              </Typography>
-            </li>
-          </ul>
-        </CardBody>
-        <CardFooter className="mt-12 p-0">
-          <Button
-            size="lg"
-            color="white"
-            className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
-            ripple={false}
-            fullWidth={true}
-          >
-            Obtenir un devis
-          </Button>
-        </CardFooter>
-      </Card>
-      <Card
-        className="w-full max-w-[20rem] p-8 bg-black bg-opacity-90"
-        shadow={true}
-      >
-        <CardHeader
-          floated={false}
-          shadow={false}
-          color="transparent"
-          className="m-0 mb-8 rounded-none border-b border-white/10 pb-8 text-center"
-        >
-          <Typography
-            variant="small"
-            color="white"
-            className="font-normal uppercase text-white"
-          >
-            Hébergement & Maintenance
-          </Typography>
-          <Typography
-            variant="h1"
-            color="white"
-            className="mt-6 flex justify-center gap-1 text-7xl font-normal"
-          >
-            <span className="mt-2 text-4xl "> Forfait 300€ TTC /mois</span>{" "}
-          </Typography>
-        </CardHeader>
-        <CardBody className="p-0">
-          <ul className="flex flex-col gap-4">
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                Hébergement OVH cloud/VPS, SSL Let's Encrypt
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                Déploiement CI/CD automatisé ,tests unitaires & fonctionnels
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                3 évolutuions/corrections mensuelles
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                {" "}
-                Monitoring uptime & Core Web Vitals
-              </Typography>
-            </li>
-            <li className="flex items-center gap-4">
-              <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                <CheckIcon />
-              </span>
-              <Typography className="font-normal text-white">
-                {" "}
-                Mise à jour de sécurité Symfony
-              </Typography>
-            </li>
-          </ul>
-        </CardBody>
-        <CardFooter className="mt-12 p-0">
-          <Button
-            size="lg"
-            color="white"
-            className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
-            ripple={false}
-            fullWidth={true}
-          >
-            Obtenir un devis
-          </Button>
-        </CardFooter>
-      </Card>
+          ))}
+        </ul>
+      </CardBody>
+      <CardFooter className="mt-12 p-0">
+        <Button size="lg" color="white" fullWidth>
+          Obtenir un devis
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}
 
-      <div className="relative flex flex-col my-6 bg-black shadow-sm border border-slate-200 rounded-lg w-96">
-        <div className="mx-3 mb-0 border-b border-slate-200 pt-3 pb-2 px-1">
-          <span className="text-sm font-medium text-slate-600 text-white">
-            Pourquoi Choisir Chaindev?
-          </span>
-        </div>
-
-        <div className="p-4">
-          <ul>
-            <li className="text-white">
-              {" "}
-              Infrastructure OVH maîtrisée : fiabilité & performance garanties
-            </li>
-            <li className="text-white">
-              {" "}
-              Tarifs TTC transparents, compétitifs
-            </li>
-            <li className="text-white">
-              {" "}
-              Accompagnement complet : analyse, développement, déploiement,
-              support
-            </li>
-            <li className="text-white">
-              {" "}
-              Multilingues natif( FR/EN), autres langues sur demande
-            </li>
-            <li className="text-white">
-              {" "}
-              Approche pédagogique: reporting clair & formation utilisateur
-            </li>
-          </ul>
-        </div>
+// Composant latéral (side cards)
+function SideCard({ caption, children }) {
+  return (
+    <div className="relative flex flex-col my-6 bg-black shadow-sm border border-slate-200 rounded-lg w-80 p-4">
+      <div className="mx-3 mb-2 border-b border-slate-200 pt-3 pb-2 px-1">
+        <span className="text-sm font-medium text-white">{caption}</span>
       </div>
-      <div className="relative flex flex-col my-6 bg-black shadow-sm border border-slate-200 rounded-lg w-96">
-        <div className="mx-3 mb-0 border-b border-slate-200 pt-3 pb-2 px-1">
-          <span className="text-sm font-medium text-slate-600 text-white">
-            Pret à lancer votre projet multilingue?
-          </span>
-        </div>
-
-        <div className="p-4">
-          <p className="text-white">
-            {" "}
-            Contactez-moi pour un audit gratuit et un devis personnalisé.
-          </p>
-        </div>
-      </div>
-    </>
+      <div className="p-2 text-white">{children}</div>
+    </div>
   );
 }
 
@@ -416,22 +143,49 @@ function Services() {
     >
       <h1
         id="about-title"
-        className="text-center text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-8"
+        className="text-center text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-8 bg-black rounded-lg p-2 sm:p-6 shadow-lg"
       >
         Services
       </h1>
-      <h2 className="text-white text-xl mb-2">
-        Chaindev-Developpeur Freelance
+      <h2 className="text-white text-xl mb-2 bg-black rounded-lg p-2 sm:p-6 shadow-lg">
+        Chaindev - Développeur Freelance
       </h2>
-      <h3 className="text-white mb-12">
+      <h3 className="text-white mb-12 bg-black rounded-lg p-2 sm:p-6 shadow-lg">
         Accompagnement complet, de la création à la maintenance, pour un site
         web performant et évolutif.
       </h3>
-      <div className="flex justify-center items-center w-full gap-12">
-        <PricingCard />
+
+      {/* Offres */}
+      <div className="flex flex-wrap justify-center gap-10 w-full">
+        {plans.map((plan) => (
+          <PlanCard
+            key={plan.id}
+            title={plan.title}
+            price={plan.price}
+            features={plan.features}
+          />
+        ))}
+      </div>
+
+      {/* SideCards placées sous les offres */}
+      <div className="flex flex-col items-center gap-6 mt-10 w-full md:flex-row md:justify-between md:px-4">
+        <SideCard caption="Pourquoi Choisir Chaindev?">
+          <ul className="list-disc list-inside gap-6">
+            <li>Infrastructure OVH maîtrisée : fiabilité & performance</li>
+            <li>Tarifs TTC transparents, compétitifs</li>
+            <li>Accompagnement complet : analyse, développement, support</li>
+            <li>Multilingue natif (FR/EN), autres langues sur demande</li>
+            <li>Approche pédagogique : reporting clair & formation</li>
+          </ul>
+        </SideCard>
+
+        <SideCard caption="Prêt à lancer votre projet?">
+          <p>Contactez-moi pour un audit gratuit et un devis personnalisé.</p>
+        </SideCard>
       </div>
     </main>
   );
 }
 
+// Export en pied de page
 export default Services;

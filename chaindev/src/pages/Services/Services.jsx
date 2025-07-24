@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"; // Import de PropTypes en haut du fichier
 import image from "../../assets/images/Bacgroundimg.png";
 import {
   Card,
@@ -9,6 +10,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 
+// Composant CheckIcon
 function CheckIcon() {
   return (
     <svg
@@ -102,8 +104,8 @@ export function PlanCard({ title, price, features }) {
       </CardHeader>
       <CardBody className="p-0">
         <ul className="flex flex-col gap-4">
-          {features.map((f, i) => (
-            <li key={i} className="flex items-center gap-4 text-white">
+          {features.map((f) => (
+            <li key={f} className="flex items-center gap-4 text-white">
               <span className="rounded-full border border-white/20 bg-white/20 p-1">
                 <CheckIcon />
               </span>
@@ -113,13 +115,19 @@ export function PlanCard({ title, price, features }) {
         </ul>
       </CardBody>
       <CardFooter className="mt-12 p-0">
-        <Button size="lg" color="white" fullWidth>
+        <Button size="lg" color="white" fullWidth className="p-4">
           Obtenir un devis
         </Button>
       </CardFooter>
     </Card>
   );
 }
+
+PlanCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  features: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 // Composant latéral (side cards)
 function SideCard({ caption, children }) {
@@ -132,6 +140,11 @@ function SideCard({ caption, children }) {
     </div>
   );
 }
+
+SideCard.propTypes = {
+  caption: PropTypes.string.isRequired,
+  children: PropTypes.node,
+};
 
 function Services() {
   return (

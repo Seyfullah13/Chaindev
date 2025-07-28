@@ -9,6 +9,7 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import { Link } from "@tanstack/react-router";
 
 // Composant CheckIcon
 function CheckIcon() {
@@ -116,8 +117,11 @@ export function PlanCard({ title, price, features }) {
       </CardBody>
       <CardFooter className="mt-12 p-0">
         <Button size="lg" color="white" fullWidth className="p-4">
+        <Link   to="/contact">
+          
           Obtenir un devis
-        </Button>
+        </Link>
+         </Button>
       </CardFooter>
     </Card>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import image from "../../assets/images/Bacgroundimg.png";
-
+import { Link } from "@tanstack/react-router";
 function Home() {
   return (
     <main
@@ -53,13 +53,21 @@ function Home() {
             bg-[#A8F6FF] hover:bg-[#5ED4E8]
             text-[#121212] font-bold
             rounded-full
-            transition-colors transition-shadow duration-200
+            transition-colors duration-200
             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5ED4E8]
           "
           onClick={() => {}}
           aria-label="Discuter de votre projet web avec Chaindev"
+
+
         >
+          <Link
+                          to="/contact"
+                          className="hover transition-colors"
+                        >
+
           Discutons du projet
+                        </Link>
         </button>
       </div>
     </main>

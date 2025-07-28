@@ -62,7 +62,7 @@ function Home() {
 
         >
           <Link
-                          to="/contact"
+                          to="/contact" prefetch="intent"
                           className="hover transition-colors"
                         >
 

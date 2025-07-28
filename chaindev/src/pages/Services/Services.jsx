@@ -117,7 +117,7 @@ export function PlanCard({ title, price, features }) {
       </CardBody>
       <CardFooter className="mt-12 p-0">
         <Button size="lg" color="white" fullWidth className="p-4">
-        <Link   to="/contact">
+        <Link   to="/contact" prefetch="intent">
           
           Obtenir un devis
         </Link>

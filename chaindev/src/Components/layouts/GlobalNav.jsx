@@ -5,6 +5,7 @@ import {
   XMarkIcon,
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
+import { useTranslation } from "react-i18next";
 
 // Liens de navigation
 const navLinks = [
@@ -36,9 +37,13 @@ function useClickOutside(ref, handler) {
 }
 
 export default function Navbar() {
+  const { i18n } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState(languages[2]); // Français par défaut
+
+  // Trouver la langue courante dans la liste
+  const currentLang =
+    languages.find((l) => l.code === i18n.language) || languages[2]; // fallback FR
 
   // fermer menu mobile au resize desktop
   useEffect(() => {
@@ -46,6 +51,11 @@ export default function Navbar() {
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
+
+  // Mettre à jour la direction du texte selon la langue
+  useEffect(() => {
+    document.body.dir = i18n.dir();
+  }, [i18n, i18n.language]);
 
   // click outside dropdown
   const langRef = useRef(null);
@@ -115,7 +125,7 @@ export default function Navbar() {
                     <li key={lang.code}>
                       <button
                         onClick={() => {
-                          setCurrentLang(lang);
+                          i18n.changeLanguage(lang.code);
                           setLangOpen(false);
                         }}
                         className="w-full text-left px-3 py-2 hover:bg-gray-200 flex items-center gap-2"
@@ -194,7 +204,7 @@ export default function Navbar() {
                   <li key={lang.code}>
                     <button
                       onClick={() => {
-                        setCurrentLang(lang);
+                        i18n.changeLanguage(lang.code);
                         setLangOpen(false);
                         setMobileOpen(false);
                       }}

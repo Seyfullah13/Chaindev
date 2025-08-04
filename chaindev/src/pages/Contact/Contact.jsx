@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import image from "../../assets/images/Bacgroundimg.png";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+
 import "../../styles/index.css";
 
 function Contact() {
@@ -8,9 +11,20 @@ function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [messageLength, setMessageLength] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState(false);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    // Validation du téléphone avant soumission
+    if (!isValidPhoneNumber(phone)) {
+      setPhoneError(true);
+      return;
+    } else {
+      setPhoneError(false);
+    }
+
     setIsSubmitting(true);
     try {
       const response = await handleSubmit(e);
@@ -27,7 +41,8 @@ function Contact() {
 
   useEffect(() => {
     const handleBeforeUnload = (e) => {
-      if (document.querySelector("form").checkValidity() === false) {
+      const form = document.querySelector("form");
+      if (form && !form.checkValidity()) {
         const message =
           "Êtes-vous sûr de vouloir quitter ? Vos modifications seront perdues.";
         e.returnValue = message;
@@ -93,8 +108,9 @@ function Contact() {
           Les champs marqués d'un * sont obligatoires
         </p>
 
-        <form onSubmit={handleFormSubmit} className="mt-4 space-y-5">
+        <form onSubmit={handleFormSubmit} className="mt-4 space-y-5" noValidate>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Nom */}
             <div>
               <label
                 htmlFor="nom"
@@ -107,7 +123,6 @@ function Contact() {
                 type="text"
                 name="nom"
                 required
-                aria-required="true"
                 pattern="[A-Za-zÀ-ÿ\s]{2,50}"
                 placeholder="Entrer Nom"
                 title="2 à 50 caractères, lettres uniquement"
@@ -133,6 +148,7 @@ function Contact() {
               />
             </div>
 
+            {/* Prénom */}
             <div>
               <label
                 htmlFor="prenom"
@@ -145,7 +161,6 @@ function Contact() {
                 type="text"
                 name="prenom"
                 required
-                aria-required="true"
                 pattern="[A-Za-zÀ-ÿ\s]{2,50}"
                 placeholder="Entrer Prénom"
                 title="2 à 50 caractères, lettres uniquement"
@@ -172,6 +187,7 @@ function Contact() {
             </div>
           </div>
 
+          {/* Email */}
           <div>
             <label
               htmlFor="email"
@@ -184,7 +200,6 @@ function Contact() {
               type="email"
               name="email"
               required
-              aria-required="true"
               placeholder="Entrer E-mail"
               className={`w-full py-2.5 px-4 bg-gray-100 border ${
                 state.errors?.email ? "border-red-500" : "border-gray-200"
@@ -205,6 +220,7 @@ function Contact() {
             />
           </div>
 
+          {/* Téléphone */}
           <div>
             <label
               htmlFor="telephone"
@@ -212,38 +228,28 @@ function Contact() {
             >
               Téléphone *
             </label>
-            <input
+            <PhoneInput
               id="telephone"
-              type="tel"
               name="telephone"
-              required
-              aria-required="true"
-              pattern="[\+]\d{2}[\s]\d{1}[\s]\d{2}[\s]\d{2}[\s]\d{2}[\s]\d{2}"
-              title="Format international requis : +33 6 XX XX XX XX"
-              placeholder="+33 6 XX XX XX XX"
-              className={`w-full py-2.5 px-4 bg-gray-100 border ${
-                state.errors?.telephone ? "border-red-500" : "border-gray-200"
-              } text-sm text-slate-800 focus:border-slate-900 focus:bg-transparent outline-none transition-all`}
+              international
+              defaultCountry="FR"
+              value={phone}
+              onChange={setPhone}
+              className={`bg-gray-100 border rounded text-sm px-3 py-2 ${
+                phoneError ? "border-red-500" : "border-gray-300"
+              }`}
             />
+            {phoneError && (
+              <span className="text-xs text-red-500 mt-1 block">
+                Numéro de téléphone invalide
+              </span>
+            )}
             <p className="text-xs text-gray-500 mt-1">
-              * Format international requis (exemple: +33 pour la France, +90
-              pour la Turquie)
+              * Format international requis (ex. : +33 6 12 34 56 78)
             </p>
-            <ValidationError
-              prefix="Téléphone"
-              field="telephone"
-              errors={state.errors}
-              render={({ messages }) =>
-                messages &&
-                Object.entries(messages).map(([type, message]) => (
-                  <span key={type} className="text-xs text-red-500 mt-1 block">
-                    {message}
-                  </span>
-                ))
-              }
-            />
           </div>
 
+          {/* Objet de la demande */}
           <div>
             <label
               htmlFor="objet"
@@ -255,7 +261,6 @@ function Contact() {
               id="objet"
               name="objet"
               required
-              aria-required="true"
               defaultValue=""
               className={`w-full py-2.5 px-4 bg-gray-100 border ${
                 state.errors?.objet ? "border-red-500" : "border-gray-200"
@@ -287,6 +292,7 @@ function Contact() {
             />
           </div>
 
+          {/* Message */}
           <div>
             <label
               htmlFor="message"
@@ -298,8 +304,7 @@ function Contact() {
               id="message"
               name="message"
               required
-              aria-required="true"
-              rows="6"
+              rows={6}
               maxLength={1000}
               placeholder="Décrivez votre besoin ici..."
               onChange={(e) => setMessageLength(e.target.value.length)}
@@ -330,6 +335,7 @@ function Contact() {
             </div>
           </div>
 
+          {/* Submit */}
           <button
             type="submit"
             disabled={isSubmitting}

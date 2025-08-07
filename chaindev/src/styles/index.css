@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../../.flowbite-react/class-list.json";
 /* Validation des inputs */
 input:valid:not(:placeholder-shown),
 select:valid:not(:placeholder-shown),

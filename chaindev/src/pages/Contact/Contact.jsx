@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
+import { useTranslation } from "react-i18next";
 import image from "../../assets/images/Bacgroundimg.png";
 
 function Contact() {
   const [state, handleSubmit] = useForm("xpwlpvjo");
   const [phone, setPhone] = useState("");
+  const { t } = useTranslation();
 
   if (state.succeeded) {
     return (
@@ -16,11 +18,9 @@ function Contact() {
       >
         <div className="bg-white p-8 rounded shadow-md max-w-lg mx-auto text-center">
           <h1 className="text-3xl font-bold text-slate-900 mb-4">
-            Merci pour votre message !
+            {t("thankyou.title")}
           </h1>
-          <p className="text-slate-700">
-            Je vous répondrai dans les plus brefs délais.
-          </p>
+          <p className="text-slate-700">{t("thankyou.content")}</p>
         </div>
       </main>
     );
@@ -34,18 +34,15 @@ function Contact() {
       style={{ backgroundImage: `url(${image})` }}
     >
       <h1 className="text-center text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-16">
-        Contact
+        {t("contact.pageTitle")}
       </h1>
 
       <div className="p-4 mx-auto max-w-xl bg-white mb-16 rounded shadow-md w-full">
-        <h2 className="text-3xl text-slate-900 font-bold">Contactez moi !</h2>
-        <h3>
-          Développeur freelance, je crée votre site web responsive en présentiel
-          ou à distance.
-        </h3>
-        <h4 className="mb-4">
-          Remplissez le formulaire ci-dessous pour démarrer :
-        </h4>
+        <h2 className="text-3xl text-slate-900 font-bold">
+          {t("contact.heading")}
+        </h2>
+        <h3>{t("contact.subtitle")}</h3>
+        <h4 className="mb-4">{t("contact.instruction")}</h4>
 
         <form onSubmit={handleSubmit} className="mt-4 space-y-5">
           {/* Nom & Prénom */}
@@ -55,33 +52,37 @@ function Contact() {
                 htmlFor="nom"
                 className="text-sm font-medium text-slate-900 mb-1 block"
               >
-                Nom
+                {t("form.fields.lastName")}
               </label>
               <input
                 id="nom"
                 type="text"
                 name="nom"
-                placeholder="Entrer Nom"
+                placeholder={t("form.fields.lastNamePlaceholder")}
                 className="w-full py-2.5 px-4 bg-gray-100 border border-gray-200 text-sm text-slate-800 focus:border-slate-900 focus:bg-transparent outline-none transition-all"
               />
-              <ValidationError prefix="Nom" field="nom" errors={state.errors} />
+              <ValidationError
+                prefix={t("form.fields.lastName")}
+                field="nom"
+                errors={state.errors}
+              />
             </div>
             <div>
               <label
                 htmlFor="prenom"
                 className="text-sm font-medium text-slate-900 mb-1 block"
               >
-                Prénom
+                {t("form.fields.firstName")}
               </label>
               <input
                 id="prenom"
                 type="text"
                 name="prenom"
-                placeholder="Entrer Prénom"
+                placeholder={t("form.fields.firstNamePlaceholder")}
                 className="w-full py-2.5 px-4 bg-gray-100 border border-gray-200 text-sm text-slate-800 focus:border-slate-900 focus:bg-transparent outline-none transition-all"
               />
               <ValidationError
-                prefix="Prénom"
+                prefix={t("form.fields.firstName")}
                 field="prenom"
                 errors={state.errors}
               />
@@ -94,17 +95,17 @@ function Contact() {
               htmlFor="email"
               className="text-sm font-medium text-slate-900 mb-1 block"
             >
-              Email
+              {t("form.fields.email")}
             </label>
             <input
               id="email"
               type="email"
               name="email"
-              placeholder="Entrer E-mail"
+              placeholder={t("form.fields.emailPlaceholder")}
               className="w-full py-2.5 px-4 bg-gray-100 border border-gray-200 text-sm text-slate-800 focus:border-slate-900 focus:bg-transparent outline-none transition-all"
             />
             <ValidationError
-              prefix="Email"
+              prefix={t("form.fields.email")}
               field="email"
               errors={state.errors}
             />
@@ -116,18 +117,18 @@ function Contact() {
               htmlFor="phone"
               className="text-sm font-medium text-slate-900 mb-1 block"
             >
-              Téléphone
+              {t("form.fields.phone")}
             </label>
             <PhoneInput
               defaultCountry="fr"
               value={phone}
-              onChange={(phone) => setPhone(phone)}
+              onChange={setPhone}
               inputClassName="w-full py-2.5 px-4 bg-gray-100 border border-gray-200 text-sm text-slate-800 focus:border-slate-900 focus:bg-transparent outline-none transition-all"
+              placeholder={t("form.fields.phonePlaceholder")}
             />
-            {/* Champ masqué pour envoyer le téléphone */}
             <input type="hidden" name="phone" value={phone} />
             <ValidationError
-              prefix="Téléphone"
+              prefix={t("form.fields.phone")}
               field="phone"
               errors={state.errors}
             />
@@ -139,7 +140,7 @@ function Contact() {
               htmlFor="objet"
               className="text-sm font-medium text-slate-900 mb-1 block"
             >
-              Objet de la demande
+              {t("form.fields.subject")}
             </label>
             <select
               id="objet"
@@ -148,18 +149,24 @@ function Contact() {
               className="w-full py-2.5 px-4 bg-gray-100 border border-gray-200 text-sm text-slate-800 focus:border-slate-900 focus:bg-transparent outline-none transition-all"
             >
               <option value="" disabled hidden>
-                Sélectionnez un service
+                {t("form.fields.subjectPlaceholder")}
               </option>
-              <option value="Site Vitrine">Site Vitrine – 1080 €</option>
-              <option value="Site E-Commerce">Site E-Commerce – 2160 €</option>
-              <option value="Traduction Web">Traduction Web – 30 €/page</option>
+              <option value="Site Vitrine">
+                {t("form.options.siteVitrine")}
+              </option>
+              <option value="Site E-Commerce">
+                {t("form.options.siteECommerce")}
+              </option>
+              <option value="Traduction Web">
+                {t("form.options.translationWeb")}
+              </option>
               <option value="Maintenance">
-                Hébergement & Maintenance – 300 €/mois
+                {t("form.options.maintenance")}
               </option>
-              <option value="Autre">Autre (à préciser dans le message)</option>
+              <option value="Autre">{t("form.options.other")}</option>
             </select>
             <ValidationError
-              prefix="Objet"
+              prefix={t("form.fields.subject")}
               field="objet"
               errors={state.errors}
             />
@@ -171,17 +178,17 @@ function Contact() {
               htmlFor="message"
               className="text-sm font-medium text-slate-900 mb-1 block"
             >
-              Message
+              {t("form.fields.message")}
             </label>
             <textarea
               id="message"
               name="message"
               rows="6"
-              placeholder="Décrivez votre besoin ici..."
+              placeholder={t("form.fields.messagePlaceholder")}
               className="w-full px-4 pt-3 bg-gray-100 border border-gray-200 text-sm text-slate-800 focus:border-slate-900 focus:bg-transparent outline-none transition-all"
-            ></textarea>
+            />
             <ValidationError
-              prefix="Message"
+              prefix={t("form.fields.message")}
               field="message"
               errors={state.errors}
             />
@@ -193,7 +200,7 @@ function Contact() {
             disabled={state.submitting}
             className="w-full py-2.5 px-4 text-white bg-slate-900 hover:bg-slate-800 text-sm font-medium tracking-wide border-0 outline-none cursor-pointer"
           >
-            Envoyer Message
+            {t("form.submitButton")}
           </button>
         </form>
       </div>

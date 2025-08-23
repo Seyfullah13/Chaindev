@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types"; // Import de PropTypes en haut du fichier
+import PropTypes from "prop-types";
 import image from "../../assets/images/Bacgroundimg.png";
 import {
   Card,
@@ -10,6 +10,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 // Composant CheckIcon
 function CheckIcon() {
@@ -31,54 +32,31 @@ function CheckIcon() {
   );
 }
 
-// Données des offres
+// Données des offres (on conserve uniquement les ids et clés de traduction)
 const plans = [
   {
     id: "vitrine",
-    title: "Site Vitrine",
-    price: "1080 € TTC",
-    features: [
-      "Pages : Accueil, À propos, Services, Contact",
-      "Formulaire de contact, Google Maps, galerie d’images",
-      "Accessibilité WCAG 2.1, mobile/tablette",
-      "SEO on-page (balises, sitemap, meta)",
-      "CI/CD GitLab, back-office simple",
-    ],
+    titleKey: "services.plans.vitrine.title",
+    priceKey: "services.plans.vitrine.price",
+    featuresKey: "services.plans.vitrine.features",
   },
   {
     id: "ecommerce",
-    title: "Site E-Commerce",
-    price: "2160 € TTC",
-    features: [
-      "Catalogue produits, filtres dynamiques",
-      "Paiement Stripe/PayPal, tunnel de commande",
-      "Gestion des stocks & commandes via back-office",
-      "Statistiques via Matomo ou Google Analytics",
-    ],
+    titleKey: "services.plans.ecommerce.title",
+    priceKey: "services.plans.ecommerce.price",
+    featuresKey: "services.plans.ecommerce.features",
   },
   {
     id: "traduction",
-    title: "Traduction Web",
-    price: "30 € TTC / page / langue",
-    features: [
-      "Traduction contenus, interface & navigation",
-      "Intégration Symfony Translator",
-      "Routage i18n, URL localisées & fallback",
-      "Optimisation SEO Multilingue",
-      "Ajout de langue possible à tout moment",
-    ],
+    titleKey: "services.plans.traduction.title",
+    priceKey: "services.plans.traduction.price",
+    featuresKey: "services.plans.traduction.features",
   },
   {
     id: "hebergement",
-    title: "Hébergement & Maintenance",
-    price: "300 € TTC / mois",
-    features: [
-      "Hébergement OVH cloud/VPS, SSL Let's Encrypt",
-      "Déploiement CI/CD automatisé, tests unitaires & fonctionnels",
-      "3 évolutions/corrections mensuelles",
-      "Monitoring uptime & Core Web Vitals",
-      "Mise à jour de sécurité Symfony",
-    ],
+    titleKey: "services.plans.hebergement.title",
+    priceKey: "services.plans.hebergement.price",
+    featuresKey: "services.plans.hebergement.features",
   },
 ];
 
@@ -117,11 +95,11 @@ export function PlanCard({ title, price, features }) {
       </CardBody>
       <CardFooter className="mt-12 p-0">
         <Button size="lg" color="white" fullWidth className="p-4">
-        <Link   to="/contact" prefetch="intent">
-          
-          Obtenir un devis
-        </Link>
-         </Button>
+          <Link to="/contact" prefetch="intent">
+            {/** Traduction du CTA */}
+            {title /* ou t("services.cta.button") si vous préférez */}
+          </Link>
+        </Button>
       </CardFooter>
     </Card>
   );
@@ -150,59 +128,58 @@ SideCard.propTypes = {
   children: PropTypes.node,
 };
 
-function Services() {
+// Composant principal
+export default function Services() {
+  const { t } = useTranslation();
+
   return (
     <main
       role="main"
-      aria-label="Présentation Chaindev - Services"
+      aria-label={t("services.pageTitle")}
       className="relative w-full min-h-screen bg-cover bg-right-top flex flex-col items-center justify-start px-4 pt-6 sm:pt-8 md:pt-10"
       style={{ backgroundImage: `url(${image})` }}
     >
       <h1
-        id="about-title"
+        id="services-title"
         className="text-center text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-8 bg-black rounded-lg p-2 sm:p-6 shadow-lg"
       >
-        Services
+        {t("services.pageTitle")}
       </h1>
       <h2 className="text-white text-xl mb-2 bg-black rounded-lg p-2 sm:p-6 shadow-lg">
-        Chaindev - Développeur Freelance
+        {t("services.subtitle")}
       </h2>
       <h3 className="text-white mb-12 bg-black rounded-lg p-2 sm:p-6 shadow-lg">
-        Accompagnement complet, de la création à la maintenance, pour un site
-        web performant et évolutif.
+        {t("services.description")}
       </h3>
 
       {/* Offres */}
       <div className="flex flex-wrap justify-center gap-10 w-full">
-        {plans.map((plan) => (
+        {plans.map(({ id, titleKey, priceKey, featuresKey }) => (
           <PlanCard
-            key={plan.id}
-            title={plan.title}
-            price={plan.price}
-            features={plan.features}
+            key={id}
+            title={t(titleKey)}
+            price={t(priceKey)}
+            features={t(featuresKey, { returnObjects: true })}
           />
         ))}
       </div>
 
-      {/* SideCards placées sous les offres */}
+      {/* SideCards */}
       <div className="flex flex-col items-center gap-6 mt-10 w-full md:flex-row md:justify-between md:px-4">
-        <SideCard caption="Pourquoi Choisir Chaindev?">
+        <SideCard caption={t("services.cards.whyChoose.caption")}>
           <ul className="list-disc list-inside gap-6">
-            <li>Infrastructure OVH maîtrisée : fiabilité & performance</li>
-            <li>Tarifs TTC transparents, compétitifs</li>
-            <li>Accompagnement complet : analyse, développement, support</li>
-            <li>Multilingue natif (FR/EN), autres langues sur demande</li>
-            <li>Approche pédagogique : reporting clair & formation</li>
+            {t("services.cards.whyChoose.items", { returnObjects: true }).map(
+              (item) => (
+                <li key={item}>{item}</li>
+              )
+            )}
           </ul>
         </SideCard>
 
-        <SideCard caption="Prêt à lancer votre projet?">
-          <p>Contactez-moi pour un audit gratuit et un devis personnalisé.</p>
+        <SideCard caption={t("services.cards.ready.caption")}>
+          <p>{t("services.cards.ready.text")}</p>
         </SideCard>
       </div>
     </main>
   );
 }
-
-// Export en pied de page
-export default Services;

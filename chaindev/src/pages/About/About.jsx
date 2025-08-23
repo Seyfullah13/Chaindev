@@ -2,8 +2,10 @@ import React from "react";
 import image from "../../assets/images/Bacgroundimg.png";
 import profilImg from "../../assets/images/profil-img.png";
 import flagsImg from "../../assets/images/multilingue.png";
+import { useTranslation } from "react-i18next";
 
 function About() {
+  const { t } = useTranslation();
   return (
     <main
       role="main"
@@ -16,7 +18,7 @@ function About() {
         id="about-title"
         className="text-center text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-16"
       >
-        À propos
+        {t("about.pageTitle")}
       </h1>
 
       <div className="max-w-[90%] mx-auto flex flex-col md:flex-row md:justify-between items-start gap-8">
@@ -27,42 +29,23 @@ function About() {
         >
           <div className="flex-1 flex flex-col gap-4">
             <p className="text-base md:text-lg leading-relaxed mb-4">
-              Passionné par la tech et les langues, j’ai opéré une reconversion
-              en développement web, alliant vision business et ouverture
-              internationale.
+              {t("about.introduction")}
             </p>
 
-            <h2 className="font-semibold mb-4 text-lg">Mon approche :</h2>
+            <h2 className="font-semibold mb-4 text-lg">
+              {t("about.approachTitle")}
+            </h2>
             <ul className="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
-              <li>
-                <strong>Précision :</strong> un code soigné, performant et
-                pérenne.
-              </li>
-              <li>
-                <strong>Agilité :</strong> interactions courtes pour ajuster en
-                temps réel.
-              </li>
-              <li>
-                <strong>Impact :</strong> chaque fonctionnalité vise un résultat
-                concret.
-              </li>
-              <li>
-                <strong>Clarté :</strong> communication transparente et jalons
-                affichés.
-              </li>
-              <li>
-                <strong>Évolutivité :</strong> architectures qui grandissent
-                avec votre projet.
-              </li>
-              <li>
-                <strong>Multilingue intégré :</strong> turc, anglais, espagnol,
-                italien, arabe, français.
-              </li>
+              <li>{t("about.approachList.precision")} </li>
+              <li>{t("about.approachList.agility")}</li>
+              <li>{t("about.approachList.impact")}</li>
+              <li>{t("about.approachList.clarity")}</li>
+              <li>{t("about.approachList.scalability")}</li>
+              <li>{t("about.approachList.multilingual")}</li>
             </ul>
 
             <p className="mt-6 text-base md:text-lg leading-relaxed mb-6">
-              Choisissez un freelance qui code, localise et maximise votre
-              présence web internationale.
+              {t("about.conclusion")}
             </p>
           </div>
 

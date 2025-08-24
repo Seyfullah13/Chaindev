@@ -17,11 +17,11 @@ const navLinks = [
 
 // Langues disponibles
 const languages = [
-  { code: "en", label: "English", flag: "🇺🇸" },
-  { code: "es", label: "Español", flag: "🇪🇸" },
-  { code: "fr", label: "Français", flag: "🇫🇷" },
-  { code: "tr", label: "Türkçe", flag: "🇹🇷" },
-  { code: "ar", label: "العربية", flag: "🇸🇦" },
+  { code: "en", label: "English" },
+  { code: "es", label: "Español" },
+  { code: "fr", label: "Français" },
+  { code: "tr", label: "Türkçe" },
+  { code: "ar", label: "العربية" },
 ];
 
 // Hook pour fermer au clic en dehors

@@ -75,23 +75,23 @@
   },
   "legalNotice": {
     "pageTitle": "Mentions légales",
-    "lastUpdated": "Dernière mise à jour : 30 juin 2025",
+    "lastUpdated": "<0>Dernière mise à jour :</0> <1>{{date}}</1>",
     "sections": {
       "presentationSite": {
         "title": "1. Présentation du site",
         "legalInfoTitle": "1.1 Informations légales",
         "legalInfoItems": {
-          "company": "Chaindev",
-          "structure": "Entreprise Individuelle",
-          "address": "20 rue du 11 novembre, Résidence de Gandaillat, 63370 Lempdes",
-          "siret": "943 744 482 00010",
-          "director": "Mr Ozdal Seyfullah",
-          "contactEmail": "chaindev13@proton.me"
+          "company": " Dénomination sociale : Chaindev",
+          "structure": " Forme juridique : Entreprise Individuelle",
+          "address": "Adresse du siège social: 20 rue du 11 novembre, Résidence de Gandaillat, 63370 Lempdes",
+          "siret": " SIRET : 943 744 482 00010",
+          "director": " Directeur de la publication: Mr Ozdal Seyfullah",
+          "contactEmail": " Email de contact : chaindev13@proton.me"
         },
         "hostingTitle": "1.2 Hébergement",
         "hostingItems": {
-          "provider": "OVH",
-          "providerAddress": "2 rue Kellermann, 59100 Roubaix, France"
+          "provider": " Hébergeur du site : OVH",
+          "providerAddress": " Adresse: 2 rue Kellermann, 59100 Roubaix, France"
         }
       },
       "terms": {
@@ -104,10 +104,10 @@
         "contentText": "Tous les éléments du site (marques, textes, images, sons, vidéos, etc.) sont protégés par les lois sur la propriété intellectuelle. Toute reproduction ou exploitation sans autorisation écrite est strictement interdite.",
         "managementTitle": "2.3 Gestion du site",
         "managementItems": [
-          "Suspension, interruption ou limitation de l’accès à tout ou partie du site",
-          "Suppression de toute information pouvant perturber le fonctionnement",
-          "Suspension temporaire du site pour des mises à jour"
+          "Suspension, interruption ou limitation de l’accès à tout ou partie du site."
         ],
+        "managementItem2": "Suppression de toute information pouvant perturber le fonctionnement.",
+        "managementItem3": "Suspension temporaire du site pour des mises à jour.",
         "liabilityTitle": "2.4 Responsabilités",
         "liabilityText1": "L’éditeur ne saurait être tenu responsable en cas de défaillance technique empêchant l’accès au site ou à ses fonctionnalités.",
         "liabilityText2": "L’utilisateur est seul responsable de la protection de son matériel et de ses données lors de sa navigation.",
@@ -115,7 +115,7 @@
         "linksText": "Le site peut contenir des liens vers d’autres sites. L’éditeur n’assume aucune responsabilité concernant le contenu de ces sites tiers."
       },
       "services": {
-        "title": " Services ",
+        "title": "3. Services fournis ",
         "text": "Le site https://chaindev.fr propose des services de développement web, de création de sites internet, de maintenance et d’hébergement. Ces informations sont non contractuelles sauf mention contraire explicite."
       },
       "law": {

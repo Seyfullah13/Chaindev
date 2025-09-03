@@ -32,7 +32,7 @@ function CheckIcon() {
   );
 }
 
-// Données des offres (on conserve uniquement les ids et clés de traduction)
+// Données des offres
 const plans = [
   {
     id: "vitrine",
@@ -62,6 +62,11 @@ const plans = [
 
 // Composant générique de carte
 export function PlanCard({ title, price, features }) {
+  const { t } = useTranslation();
+
+  // fallback sécurisé
+  const safeFeatures = Array.isArray(features) ? features : [];
+
   return (
     <Card className="w-full max-w-[20rem] p-8 bg-black bg-opacity-90" shadow>
       <CardHeader
@@ -83,7 +88,7 @@ export function PlanCard({ title, price, features }) {
       </CardHeader>
       <CardBody className="p-0">
         <ul className="flex flex-col gap-4">
-          {features.map((f) => (
+          {safeFeatures.map((f) => (
             <li key={f} className="flex items-center gap-4 text-white">
               <span className="rounded-full border border-white/20 bg-white/20 p-1">
                 <CheckIcon />
@@ -95,9 +100,8 @@ export function PlanCard({ title, price, features }) {
       </CardBody>
       <CardFooter className="mt-12 p-0">
         <Button size="lg" color="white" fullWidth className="p-4">
-          <Link to="/contact" prefetch="intent">
-            {/** Traduction du CTA */}
-            {title /* ou t("services.cta.button") si vous préférez */}
+          <Link to={t("services.cta.linkTo")} prefetch="intent">
+            {t("services.cta.button")}
           </Link>
         </Button>
       </CardFooter>
@@ -132,6 +136,14 @@ SideCard.propTypes = {
 export default function Services() {
   const { t } = useTranslation();
 
+  // fallback sécurisé pour whyChoose
+  const whyChooseItems = t("services.cards.whyChoose.items", {
+    returnObjects: true,
+  });
+  const safeWhyChooseItems = Array.isArray(whyChooseItems)
+    ? whyChooseItems
+    : [];
+
   return (
     <main
       role="main"
@@ -154,25 +166,28 @@ export default function Services() {
 
       {/* Offres */}
       <div className="flex flex-wrap justify-center gap-10 w-full">
-        {plans.map(({ id, titleKey, priceKey, featuresKey }) => (
-          <PlanCard
-            key={id}
-            title={t(titleKey)}
-            price={t(priceKey)}
-            features={t(featuresKey, { returnObjects: true })}
-          />
-        ))}
+        {plans.map(({ id, titleKey, priceKey, featuresKey }) => {
+          const rawFeatures = t(featuresKey, { returnObjects: true });
+          const safeFeatures = Array.isArray(rawFeatures) ? rawFeatures : [];
+
+          return (
+            <PlanCard
+              key={id}
+              title={t(titleKey)}
+              price={t(priceKey)}
+              features={safeFeatures}
+            />
+          );
+        })}
       </div>
 
       {/* SideCards */}
       <div className="flex flex-col items-center gap-6 mt-10 w-full md:flex-row md:justify-between md:px-4">
         <SideCard caption={t("services.cards.whyChoose.caption")}>
           <ul className="list-disc list-inside gap-6">
-            {t("services.cards.whyChoose.items", { returnObjects: true }).map(
-              (item) => (
-                <li key={item}>{item}</li>
-              )
-            )}
+            {safeWhyChooseItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </SideCard>
 

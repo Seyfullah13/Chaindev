@@ -1,1 +1,303 @@
-n
+{
+  "about": {
+    "approachList": {
+      "agility": "Çeviklik: Gerçek zamanlı ayarlamalar için kısa etkileşimler.",
+      "clarity": "Açıklık: Şeffaf iletişim ve görünür kilometre taşları.",
+      "impact": "Etkisi: Her özellik ölçülebilir bir sonuca yöneliktir.",
+      "multilingual": "Entegre çokdillilik: Türkçe, İngilizce, İspanyolca, İtalyanca, Arapça, Fransızca.",
+      "precision": "Hassasiyet: Temiz, performanslı ve sürdürülebilir kod.",
+      "scalability": "Ölçeklenebilirlik: Projenizle büyüyen mimariler."
+    },
+    "approachTitle": "Yaklaşımım:",
+    "conclusion": "Kodlayan, yerelleştiren ve uluslararası web görünürlüğünüzü maksimize eden bir freelancer seçin.",
+    "images": {
+      "flagsAlt": "Dillerin simgeleri: Türkçe, İngilizce, İspanyolca, İtalyanca, Arapça, Fransızca",
+      "profileAlt": "Chaindev, çok dilli full-stack geliştirici"
+    },
+    "introduction": "Teknoloji ve dillere tutkuluyum; web geliştiriciliğine geçiş yaptım ve iş vizyonunu uluslararası bakış açısıyla birleştiriyorum.",
+    "pageTitle": "Hakkında"
+  },
+  "contact": {
+    "heading": "İletişime geçin!",
+    "instruction": "Başlamak için aşağıdaki formu doldurun:",
+    "pageTitle": "İletişim",
+    "subtitle": "Freelance geliştirici — proje yerinde veya uzaktan responsive web sitesi oluşturuyorum."
+  },
+  "footer": {
+    "brand": "Chaindev",
+    "copyright": "© {{year}} Chaindev. Tüm hakları saklıdır.",
+    "legal": {
+      "legalNotice": "Yasal uyarı",
+      "privacy": "Gizlilik politikası"
+    },
+    "social": {
+      "githubAria": "GitHub bağlantısı",
+      "instagramAria": "Instagram bağlantısı",
+      "linkedinAria": "LinkedIn bağlantısı"
+    }
+  },
+  "form": {
+    "fields": {
+      "email": "E-posta",
+      "emailPlaceholder": "E-posta girin",
+      "firstName": "Ad",
+      "firstNamePlaceholder": "Ad girin",
+      "lastName": "Soyad",
+      "lastNamePlaceholder": "Soyad girin",
+      "message": "Mesaj",
+      "messagePlaceholder": "İhtiyacınızı burada açıklayın...",
+      "phone": "Telefon",
+      "phonePlaceholder": "Telefon girin",
+      "subject": "Konu",
+      "subjectPlaceholder": "Bir hizmet seçin"
+    },
+    "options": {
+      "maintenance": "Barındırma & Bakım – 300 €/ay",
+      "other": "Diğer (mesajda belirtiniz)",
+      "siteECommerce": "E-Ticaret Sitesi – 2160 €",
+      "siteVitrine": "Tanıtım Sitesi – 1080 €",
+      "translationWeb": "Web Çevirisi – 30 €/sayfa"
+    },
+    "submitButton": "Mesajı gönder"
+  },
+  "home": {
+    "cta": {
+      "ariaLabel": "Chaindev ile web projenizi konuşun",
+      "button": "Projeyi konuşalım"
+    },
+    "intro": "Özelleştirilmiş web çözümleri: geliştirme, güvenli altyapı ve sürekli teknik destek.",
+    "pageTitle": "Chaindev",
+    "tagline": "Chaindev: fikirden herkese uygun web çözümüne",
+    "who": {
+      "description": "Fullstack freelance geliştirici ve çok dilli (React, Symfony, PHP, Docker). Uluslararası hazır, özel web siteleri geliştiriyorum. Geliştirme ve çeviri için tek tedarikçi: EN, AR, ES, TR, IT. Net organizasyon, güvenilir teslimatlar, sonuç odaklı yöntem. Çok dilli web projelerinizde zaman kazanın ve netlik elde edin.",
+      "title": "Kimsin?"
+    }
+  },
+  "legalNotice": {
+    "pageTitle": "Yasal uyarı",
+    "lastUpdated": "<0>Son güncelleme:</0> <1>{{date}}</1>",
+    "sections": {
+      "presentationSite": {
+        "title": "1. Site sunumu",
+        "legalInfoTitle": "1.1 Yasal bilgiler",
+        "legalInfoItems": {
+          "company": "Şirket adı: Chaindev",
+          "structure": "Hukuki yapı: Tek kişilik işletme",
+          "address": "Merkez adresi: 20 rue du 11 novembre, Résidence de Gandaillat, 63370 Lempdes",
+          "siret": "SIRET: 943 744 482 00010",
+          "director": "Yayın sorumlusu: Mr Ozdal Seyfullah",
+          "contactEmail": "İletişim e-postası: chaindev13@proton.me"
+        },
+        "hostingTitle": "1.2 Barındırma",
+        "hostingItems": {
+          "provider": "Barındırma sağlayıcısı: OVH",
+          "providerAddress": "Adres: 2 rue Kellermann, 59100 Roubaix, France"
+        }
+      },
+      "terms": {
+        "title": "2. Kullanım koşulları",
+        "text": "https://chaindev.fr sitesinin kullanımı bu kullanım koşullarının tam kabulünü gerektirir. Bu koşullar önceden haber verilmeksizin değiştirilebilir. Kullanıcıların düzenli olarak kontrol etmesi önerilir.",
+        "accessTitle": "2.1 Siteye erişim",
+        "accessText1": "Site, internet bağlantısı olan herhangi bir kullanıcıya ücretsiz erişim sağlar. Erişimle ilgili tüm masraflar (donanım, bağlantı vb.) kullanıcının sorumluluğundadır.",
+        "accessText2": "Bakım veya mücbir sebep nedeniyle siteye erişim editör tarafından önceden bildirimde bulunmaksızın kesilebilir.",
+        "contentTitle": "2.2 Site içeriği",
+        "contentText": "Sitedeki tüm öğeler (markalar, metinler, görseller, sesler, videolar vb.) fikri mülkiyet yasaları ile korunmaktadır. Yazılı izin olmadan çoğaltma veya kullanım kesinlikle yasaktır.",
+        "managementTitle": "2.3 Site yönetimi",
+        "managementItems": [
+          "Sitenin tümüne veya bir kısmına erişimin askıya alınması, kesilmesi veya sınırlandırılması."
+        ],
+        "managementItem2": "İşleyişi bozabilecek herhangi bir bilginin silinmesi.",
+        "managementItem3": "Güncellemeler için sitenin geçici olarak askıya alınması.",
+        "liabilityTitle": "2.4 Sorumluluklar",
+        "liabilityText1": "Editör, siteye veya özelliklerine erişimi engelleyen teknik arızalardan sorumlu tutulamaz.",
+        "liabilityText2": "Kullanıcı, gezinme sırasında donanımını ve verilerini korumaktan tek sorumludur.",
+        "linksTitle": "2.5 Köprüler",
+        "linksText": "Site, diğer sitelere bağlantılar içerebilir. Editör, bu üçüncü taraf sitelerin içeriğinden sorumlu değildir."
+      },
+      "services": {
+        "title": "3. Sağlanan hizmetler",
+        "text": "https://chaindev.fr sitesi web geliştirme, web sitesi oluşturma, bakım ve barındırma hizmetleri sunar. Bu bilgiler açıkça belirtilmedikçe bağlayıcı değildir."
+      },
+      "law": {
+        "title": "4. Uygulanacak hukuk ve yetkili mahkeme",
+        "text": "Site kullanımıyla ilgili her türlü uyuşmazlık Fransız hukuku kapsamında çözülecektir. Clermont-Ferrand mahkemeleri münhasır yetkilidir."
+      },
+      "contact": {
+        "title": "5. İletişim",
+        "text": "Bu yasal uyarı ile ilgili herhangi bir soru için bize e-posta gönderin: chaindev13@proton.me"
+      }
+    }
+  },
+  "navbar": {
+    "aria": {
+      "closeMenu": "Menüyü kapat",
+      "langDropdown": "Dil seçici",
+      "openMenu": "Menüyü aç"
+    },
+    "brandAlt": "chaindev logosu",
+    "languages": {
+      "ar": "العربية",
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "tr": "Türkçe"
+    },
+    "navLinks": {
+      "about": "Hakkında",
+      "contact": "İletişim",
+      "portfolio": "Portfolyo",
+      "services": "Hizmetler"
+    }
+  },
+  "privacyPolicy": {
+    "pageTitle": "GİZLİLİK POLİTİKASI",
+    "lastUpdated": "Son güncelleme: 30 Haziran 2025",
+    "introductionTitle": "GİRİŞ",
+    "introduction": "Chaindev, https://chaindev.fr sitesinin ziyaretçilerinin ve kullanıcılarının gizliliğini korumaya kendini adamıştır. Bu gizlilik politikası, kişisel bilgilerinizi nasıl topladığımızı, kullandığımızı, paylaştığımızı ve koruduğumuzu açıklar. Sitemizi kullanarak, bu politikada tanımlanan uygulamaları kabul etmiş olursunuz.",
+    "dataCollection": {
+      "title": "2. KİŞİSEL VERİ TOPLAMA",
+      "directTitle": "2.1 DOĞRUDAN SAĞLADIĞINIZ VERİLER",
+      "directText": "İletişim formumuzu doldurduğunuzda veya e-posta gönderdiğinizde gönüllü olarak sağladığınız kişisel verileri toplarız.",
+      "directItem": "Bu bilgiler şunları içerebilir:",
+      "directItem1": "Adınız ve soyadınız",
+      "directItem2": "E-posta adresiniz",
+      "directItem3": "Telefon numaranız (isteğe bağlı)",
+      "automaticTitle": "2.2 OTOMATİK TOPLANAN VERİLER",
+      "automaticText": "Sitemizde gezinirken otomatik olarak bazı teknik bilgiler toplayabiliriz, bunlar şunları içerir:",
+      "automaticItem1": "IP adresiniz",
+      "automaticItem2": "Tarayıcı türü ve sürümü",
+      "automaticItem3": "İşletim sisteminiz",
+      "automaticItem4": "Sitemizde ziyaret edilen sayfalar",
+      "automaticItem5": "Ziyaretinizin tarih ve saati",
+      "automaticItem6": "Sayfa görüntüleme süreleri",
+      "automaticItem7": "İndirme hataları",
+      "cookiesTitle": "2.3 ÇEREZLER VE BENZER TEKNOLOJİLER",
+      "cookiesText": "Sitemiz, gezinme deneyiminizi iyileştirmek ve site kullanımını analiz etmek için çerezler ve benzeri teknolojiler kullanır.",
+      "cookiesItem1": "Kullanılan çerez türleri:",
+      "cookiesItem2": "Gerekli çerezler: site işlevi için zorunlu",
+      "cookiesItem3": "Analiz/performance çerezleri: ziyaretçilerin siteyle nasıl etkileşimde bulunduğunu anlamak için Google Analytics kullanıyoruz",
+      "cookiesManagement": "Çerez tercihlerinizi tarayıcı ayarları üzerinden yönetebilirsiniz."
+    },
+    "usage": {
+      "title": "3. KİŞİSEL VERİLERİN KULLANIMI",
+      "item1": "İletişim taleplerinize yanıt vermek",
+      "item2": "Sitemizi geliştirmek, kişiselleştirmek ve büyütmek",
+      "item3": "Sitemizi nasıl kullandığınızı anlamak ve analiz etmek",
+      "item4": "Teknik sorunları tespit etmek, önlemek ve çözmek"
+    },
+    "sharing": {
+      "title": "4. KİŞİSEL VERİ PAYLAŞIMI",
+      "serviceProvidersTitle": "4.1 HİZMET SAĞLAYICILARI",
+      "serviceProvidersText": "Siteyi işletmek için verilerinizi üçüncü taraf sağlayıcılarla paylaşabiliriz. Bu sağlayıcılar yalnızca görevleri için gerekli verilere erişir.",
+      "legalObligationsTitle": "4.2 YASAL YÜKÜMLÜLÜKLER",
+      "legalObligationsText": "Yasal gereklilik halinde veya geçerli yasal taleplere yanıt olarak bilgilerinizi açıklayabiliriz.",
+      "protectionTitle": "4.3 HAKLARIMIZIN KORUNMASI",
+      "protectionText": "Şüpheli yasadışı faaliyet, dolandırıcılık durumunda veya herhangi bir kişinin güvenliğini korumak için bilgilerinizi açıklayabiliriz."
+    },
+    "retention": {
+      "title": "5. VERİ SAKLAMA",
+      "text": "Veriler, belirtilen amaçlar için gerekli olduğu sürece saklanır; aksi halde yasal gerekliliklere uyulur."
+    },
+    "security": {
+      "title": "6. VERİ GÜVENLİĞİ",
+      "text": "Teknik ve organizasyonel güvenlik önlemleri uygularız, ancak hiçbir yöntem tamamen güvenli değildir."
+    },
+    "rights": {
+      "title": "7. HAKLARINIZ",
+      "item1": "Erişim, düzeltme, silme, kısıtlama, taşınabilirlik hakkı",
+      "item2": "İtiraz hakkı",
+      "item3": "Rızayı herhangi bir zamanda geri çekme hakkı",
+      "contactText": "Haklarınızı kullanmak için chaindev13@proton.me adresinden bizimle iletişime geçin."
+    },
+    "transfers": {
+      "title": "8. ULUSLARARASI VERİ TRANSFERLERİ",
+      "text": "Verileriniz AB dışına aktarılabilir; ör. Google Analytics aracılığıyla, GDPR ile uyumlu güvencelerle."
+    },
+    "externalLinks": {
+      "title": "9. DIŞ SİTELERE BAĞLANTILAR",
+      "text": "Harici bağlantılar aracılığıyla erişilen üçüncü taraf sitelerin politikalarından sorumlu değiliz."
+    },
+    "changes": {
+      "title": "10. BU POLİTİKADAKİ DEĞİŞİKLİKLER",
+      "text": "Bu politikayı değiştirebiliriz. Lütfen düzenli olarak kontrol edin."
+    },
+    "contact": {
+      "title": "11. İLETİŞİM",
+      "address": "Chaindev, 20 rue du 11 novembre, Résidence de Gandaillat, 63370 Lempdes, Email: chaindev13@proton.me"
+    }
+  },
+  "services": {
+    "cards": {
+      "ready": {
+        "caption": "Projenizi başlatmaya hazır mısınız?",
+        "text": "Ücretsiz bir denetim ve kişiye özel teklif için iletişime geçin."
+      },
+      "whyChoose": {
+        "caption": "Neden Chaindev?",
+        "items": [
+          "Eğitsel yaklaşım: net raporlama & eğitim",
+          "Eksiksiz destek: analiz, geliştirme, destek",
+          "OVH altyapısı hakimiyeti: güvenilirlik & performans",
+          "Ana dil çokdilli (FR/EN), talep üzerine diğer diller",
+          "Şeffaf, rekabetçi KDV dahil fiyatlar"
+        ]
+      }
+    },
+    "cta": {
+      "button": "Teklif al",
+      "linkTo": "/contact"
+    },
+    "description": "Oluşturmadan bakıma kadar eksiksiz destek — performanslı ve ölçeklenebilir web sitesi.",
+    "pageTitle": "Hizmetler",
+    "plans": {
+      "ecommerce": {
+        "features": [
+          "Ürün kataloğu, dinamik filtreler",
+          "Stok & sipariş yönetimi via back-office",
+          "Stripe/PayPal ödemeleri, checkout akışı",
+          "Matomo veya Google Analytics ile istatistikler"
+        ],
+        "price": "2160 € TTC",
+        "title": "E-Ticaret Sitesi"
+      },
+      "hebergement": {
+        "features": [
+          "Aylık 3 değişiklik/düzeltme",
+          "Otomatik CI/CD deploy, birim & fonksiyonel testler",
+          "OVH cloud/VPS hosting, Let's Encrypt SSL",
+          "Uptime izleme & Core Web Vitals",
+          "Symfony güvenlik güncellemeleri"
+        ],
+        "price": "300 € TTC / ay",
+        "title": "Barındırma & Bakım"
+      },
+      "traduction": {
+        "features": [
+          "İstediğiniz zamanda dil ekleme imkanı",
+          "Symfony Translator entegrasyonu",
+          "Çok dilli SEO optimizasyonu",
+          "i18n yönlendirme, yerelleştirilmiş URL'ler & fallback",
+          "İçerik, arayüz & navigasyon çevirisi"
+        ],
+        "price": "30 € TTC / sayfa / dil",
+        "title": "Web Çevirisi"
+      },
+      "vitrine": {
+        "features": [
+          "WCAG 2.1 erişilebilirlik, mobil/tablet",
+          "CI/CD GitLab, basit back-office",
+          "İletişim formu, Google Maps, resim galerisi",
+          "Sayfalar: Anasayfa, Hakkında, Hizmetler, İletişim",
+          "On-page SEO (meta etiketler, sitemap, taglar)"
+        ],
+        "price": "1080 € TTC",
+        "title": "Tanıtım Sitesi"
+      }
+    },
+    "subtitle": "Chaindev - Freelance Geliştirici"
+  },
+  "thankyou": {
+    "content": "En kısa zamanda yanıtlayacağım.",
+    "title": "Mesajınız için teşekkürler!"
+  }
+}

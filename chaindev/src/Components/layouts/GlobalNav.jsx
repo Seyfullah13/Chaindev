@@ -15,13 +15,14 @@ const navLinks = [
   { key: "contact", href: "/contact" },
 ];
 
-// Langues disponibles
+// Langues disponibles (sans drapeaux)
 const languages = [
   { code: "en", label: "English" },
   { code: "es", label: "Español" },
   { code: "fr", label: "Français" },
   { code: "tr", label: "Türkçe" },
   { code: "ar", label: "العربية" },
+  { code: "it", label: "Italiano" },
 ];
 
 // Hook pour fermer au clic en dehors
@@ -41,8 +42,11 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
 
+  // Normalisation du code langue (ex: "it-IT" -> "it")
+  const langBase = i18n.language ? i18n.language.split("-")[0] : "fr";
   const currentLang =
-    languages.find((l) => l.code === i18n.language) || languages[2]; // fallback FR
+    languages.find((l) => l.code === langBase) ||
+    languages.find((l) => l.code === "fr");
 
   // Fermer le menu mobile au resize desktop
   useEffect(() => {
@@ -53,11 +57,21 @@ export default function Navbar() {
 
   // Mettre à jour la direction du texte selon la langue
   useEffect(() => {
+    // i18n.dir() ou i18n.dir(i18n.language) selon config
     document.body.dir = i18n.dir();
   }, [i18n, i18n.language]);
 
-  const langRef = useRef(null);
-  useClickOutside(langRef, () => setLangOpen(false));
+  // refs séparés pour desktop / mobile (évite d'attacher le même ref à 2 éléments)
+  const langRefDesktop = useRef(null);
+  const langRefMobile = useRef(null);
+  useClickOutside(langRefDesktop, () => setLangOpen(false));
+  useClickOutside(langRefMobile, () => setLangOpen(false));
+
+  const handleChangeLanguage = async (code) => {
+    await i18n.changeLanguage(code);
+    setLangOpen(false);
+    setMobileOpen(false); // ferme mobile si ouvert
+  };
 
   return (
     <header className="bg-black text-white sticky top-0 z-50 w-full">
@@ -93,7 +107,7 @@ export default function Navbar() {
             )}
 
             {/* Language dropdown desktop */}
-            <div ref={langRef} className="relative">
+            <div ref={langRefDesktop} className="relative">
               <button
                 onClick={() => setLangOpen((o) => !o)}
                 className="flex items-center gap-1 border border-white px-3 py-1 rounded hover:bg-white hover:text-black transition"
@@ -101,7 +115,6 @@ export default function Navbar() {
                 aria-expanded={langOpen}
                 aria-label={t("navbar.aria.langDropdown")}
               >
-                <span>{currentLang.flag}</span>
                 <span className="hidden sm:inline">
                   {t(`navbar.languages.${currentLang.code}`)}
                 </span>
@@ -112,17 +125,13 @@ export default function Navbar() {
                 />
               </button>
               {langOpen && (
-                <ul className="absolute right-0 mt-2 w-32 bg-white text-black rounded shadow-lg overflow-hidden">
+                <ul className="absolute right-0 mt-2 w-40 bg-white text-black rounded shadow-lg overflow-hidden">
                   {languages.map((lang) => (
                     <li key={lang.code}>
                       <button
-                        onClick={() => {
-                          i18n.changeLanguage(lang.code);
-                          setLangOpen(false);
-                        }}
+                        onClick={() => handleChangeLanguage(lang.code)}
                         className="w-full text-left px-3 py-2 hover:bg-gray-200 flex items-center gap-2"
                       >
-                        <span>{lang.flag}</span>
                         <span>{t(`navbar.languages.${lang.code}`)}</span>
                       </button>
                     </li>
@@ -179,7 +188,7 @@ export default function Navbar() {
           )}
 
           {/* Language dropdown mobile */}
-          <div ref={langRef} className="relative">
+          <div ref={langRefMobile} className="relative">
             <button
               onClick={() => setLangOpen((o) => !o)}
               className="flex items-center gap-1 w-full border border-white px-3 py-2 rounded hover:bg-white hover:text-black transition"
@@ -187,7 +196,6 @@ export default function Navbar() {
               aria-expanded={langOpen}
               aria-label={t("navbar.aria.langDropdown")}
             >
-              <span>{currentLang.flag}</span>
               <span>{t(`navbar.languages.${currentLang.code}`)}</span>
               <ChevronDownIcon
                 className={`h-4 w-4 transition-transform ${
@@ -200,14 +208,9 @@ export default function Navbar() {
                 {languages.map((lang) => (
                   <li key={lang.code}>
                     <button
-                      onClick={() => {
-                        i18n.changeLanguage(lang.code);
-                        setLangOpen(false);
-                        setMobileOpen(false);
-                      }}
+                      onClick={() => handleChangeLanguage(lang.code)}
                       className="w-full text-left px-3 py-2 hover:bg-gray-200 flex items-center gap-2"
                     >
-                      <span>{lang.flag}</span>
                       <span>{t(`navbar.languages.${lang.code}`)}</span>
                     </button>
                   </li>

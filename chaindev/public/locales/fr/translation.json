@@ -136,12 +136,12 @@
     },
     "brandAlt": "logo Chaindev",
     "languages": {
-      "ar": "العربية",
-      "en": "English",
-      "es": "Español",
+      "ar": "Arabe",
+      "en": "Anglais",
+      "es": "Espagnol",
       "fr": "Français",
-      "tr": "Türkçe",
-      "it": "Italiano"
+      "tr": "Turc",
+      "it": "Italien"
     },
     "navLinks": {
       "about": "À propos",

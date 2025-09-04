@@ -1,14 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { useTranslation } from "react-i18next";
 import image from "../../assets/images/Bacgroundimg.png";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function Contact() {
-  const [state, handleSubmit] = useForm("xpwlpvjo");
+  const [state, handleSubmit] = useForm("xpwlpvjo"); // ID Formspree
   const [phone, setPhone] = useState("");
+  const [captchaValue, setCaptchaValue] = useState(null);
+  const [captchaError, setCaptchaError] = useState("");
   const { t } = useTranslation();
+
+  // fonction wrapper pour valider captcha avant submit
+  const handleSubmitWithCaptcha = async (e) => {
+    e.preventDefault();
+
+    if (!captchaValue) {
+      setCaptchaError("⚠️ Merci de valider le reCAPTCHA avant d’envoyer.");
+      return;
+    }
+
+    setCaptchaError(""); // reset message
+    handleSubmit(e);
+  };
+
+  // Effet pour faire disparaître le toast après 3 secondes
+  useEffect(() => {
+    if (captchaError) {
+      const timer = setTimeout(() => setCaptchaError(""), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [captchaError]);
 
   if (state.succeeded) {
     return (
@@ -37,14 +61,33 @@ function Contact() {
         {t("contact.pageTitle")}
       </h1>
 
-      <div className="p-4 mx-auto max-w-xl bg-white mb-16 rounded shadow-md w-full">
+      <div className="p-4 mx-auto max-w-xl bg-white mb-16 rounded shadow-md w-full relative">
         <h2 className="text-3xl text-slate-900 font-bold">
           {t("contact.heading")}
         </h2>
         <h3>{t("contact.subtitle")}</h3>
         <h4 className="mb-4">{t("contact.instruction")}</h4>
 
-        <form onSubmit={handleSubmit} className="mt-4 space-y-5">
+        {/* Toast d'erreur captcha */}
+        {captchaError && (
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded shadow-md flex items-center animate-slideDown z-50">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-2 flex-shrink-0"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M8.257 3.099c.366-.446.957-.446 1.323 0l7 8.5a1 1 0 01-.86 1.6H2.117a1 1 0 01-.86-1.6l7-8.5zM11 13a1 1 0 10-2 0 1 1 0 002 0zm-1-2a.75.75 0 01-.75-.75v-3.5a.75.75 0 011.5 0v3.5A.75.75 0 0110 11z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <span className="text-sm">{captchaError}</span>
+          </div>
+        )}
+
+        <form onSubmit={handleSubmitWithCaptcha} className="mt-4 space-y-5">
           {/* Nom & Prénom */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -134,7 +177,7 @@ function Contact() {
             />
           </div>
 
-          {/* Objet de la demande */}
+          {/* Objet */}
           <div>
             <label
               htmlFor="objet"
@@ -194,7 +237,15 @@ function Contact() {
             />
           </div>
 
-          {/* Bouton d'envoi */}
+          {/* reCAPTCHA */}
+          <div className="flex justify-center">
+            <ReCAPTCHA
+              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+              onChange={(value) => setCaptchaValue(value)}
+            />
+          </div>
+
+          {/* Bouton d’envoi */}
           <button
             type="submit"
             disabled={state.submitting}

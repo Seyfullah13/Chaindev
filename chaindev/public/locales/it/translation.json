@@ -1,0 +1,303 @@
+{
+  "about": {
+    "approachList": {
+      "agility": "Agilità: interazioni brevi per adattarsi in tempo reale.",
+      "clarity": "Chiarezza: comunicazione trasparente e milestone visibili.",
+      "impact": "Impatto: ogni funzionalità mira a un risultato concreto.",
+      "multilingual": "Multilingue integrato: turco, inglese, spagnolo, italiano, arabo, francese.",
+      "precision": "Precisione: codice pulito, performante e sostenibile.",
+      "scalability": "Scalabilità: architetture che crescono con il progetto."
+    },
+    "approachTitle": "Il mio approccio:",
+    "conclusion": "Scegli un freelance che sviluppa, localizza e massimizza la tua presenza web internazionale.",
+    "images": {
+      "flagsAlt": "Icone lingue: turco, inglese, spagnolo, italiano, arabo, francese",
+      "profileAlt": "Chaindev, sviluppatore full-stack multilingue"
+    },
+    "introduction": "Appassionato di tecnologia e lingue, mi sono riconvertito nello sviluppo web, unendo visione business e apertura internazionale.",
+    "pageTitle": "Informazioni"
+  },
+  "contact": {
+    "heading": "Contattami!",
+    "instruction": "Compila il modulo sottostante per iniziare:",
+    "pageTitle": "Contatto",
+    "subtitle": "Sviluppatore freelance — realizzo siti responsive in presenza o da remoto."
+  },
+  "footer": {
+    "brand": "Chaindev",
+    "copyright": "© {{year}} Chaindev. Tutti i diritti riservati.",
+    "legal": {
+      "legalNotice": "Note legali",
+      "privacy": "Informativa sulla privacy"
+    },
+    "social": {
+      "githubAria": "Link a GitHub",
+      "instagramAria": "Link a Instagram",
+      "linkedinAria": "Link a LinkedIn"
+    }
+  },
+  "form": {
+    "fields": {
+      "email": "Email",
+      "emailPlaceholder": "Inserisci email",
+      "firstName": "Nome",
+      "firstNamePlaceholder": "Inserisci nome",
+      "lastName": "Cognome",
+      "lastNamePlaceholder": "Inserisci cognome",
+      "message": "Messaggio",
+      "messagePlaceholder": "Descrivi la tua esigenza qui...",
+      "phone": "Telefono",
+      "phonePlaceholder": "Inserisci telefono",
+      "subject": "Oggetto",
+      "subjectPlaceholder": "Seleziona un servizio"
+    },
+    "options": {
+      "maintenance": "Hosting & Manutenzione – 300 €/mese",
+      "other": "Altro (specificare nel messaggio)",
+      "siteECommerce": "Sito E-Commerce – 2160 €",
+      "siteVitrine": "Sito Vetrina – 1080 €",
+      "translationWeb": "Traduzione Web – 30 €/pagina"
+    },
+    "submitButton": "Invia messaggio"
+  },
+  "home": {
+    "cta": {
+      "ariaLabel": "Parla del tuo progetto web con Chaindev",
+      "button": "Parliamo del progetto"
+    },
+    "intro": "Soluzioni web su misura incluse sviluppo, infrastruttura sicura e supporto tecnico continuativo.",
+    "pageTitle": "Chaindev",
+    "tagline": "Chaindev: dall'idea alla realizzazione web adattata a tutti",
+    "who": {
+      "description": "Sviluppatore Fullstack freelance e multilingue (React, Symfony, PHP, Docker). Creo siti su misura pronti per l'internazionalizzazione. Un unico fornitore per sviluppo e traduzione: EN, AR, ES, TR, IT. Organizzazione chiara, deliverable affidabili, metodo orientato ai risultati. Risparmia tempo e ottieni chiarezza sui tuoi progetti web multilingue.",
+      "title": "Chi sono?"
+    }
+  },
+  "legalNotice": {
+    "pageTitle": "Note legali",
+    "lastUpdated": "<0>Ultimo aggiornamento:</0> <1>{{date}}</1>",
+    "sections": {
+      "presentationSite": {
+        "title": "1. Presentazione del sito",
+        "legalInfoTitle": "1.1 Informazioni legali",
+        "legalInfoItems": {
+          "company": "Denominazione sociale: Chaindev",
+          "structure": "Forma giuridica: Impresa individuale",
+          "address": "Indirizzo della sede: 20 rue du 11 novembre, Résidence de Gandaillat, 63370 Lempdes",
+          "siret": "SIRET: 943 744 482 00010",
+          "director": "Direttore della pubblicazione: Sig. Ozdal Seyfullah",
+          "contactEmail": "Email di contatto: chaindev13@proton.me"
+        },
+        "hostingTitle": "1.2 Hosting",
+        "hostingItems": {
+          "provider": "Fornitore di hosting: OVH",
+          "providerAddress": "Indirizzo: 2 rue Kellermann, 59100 Roubaix, France"
+        }
+      },
+      "terms": {
+        "title": "2. Condizioni d'uso",
+        "text": "L'uso di https://chaindev.fr implica l'accettazione integrale delle presenti condizioni. Possono essere modificate in qualsiasi momento senza preavviso. Si invita a consultarle regolarmente.",
+        "accessTitle": "2.1 Accesso al sito",
+        "accessText1": "Il sito è accessibile gratuitamente a qualsiasi utente con connessione Internet. Tutti i costi relativi all'accesso (hardware, connessione, ecc.) sono a carico dell'utente.",
+        "accessText2": "L'accesso al sito può essere interrotto dall'editore per manutenzione o forza maggiore senza preavviso.",
+        "contentTitle": "2.2 Contenuto del sito",
+        "contentText": "Tutti gli elementi del sito (marchi, testi, immagini, suoni, video, ecc.) sono protetti dalle leggi sulla proprietà intellettuale. Qualsiasi riproduzione o uso senza autorizzazione scritta è vietato.",
+        "managementTitle": "2.3 Gestione del sito",
+        "managementItems": [
+          "Sospensione, interruzione o limitazione dell'accesso a tutto o parte del sito."
+        ],
+        "managementItem2": "Rimozione di qualsiasi informazione che possa perturbare il funzionamento.",
+        "managementItem3": "Sospensione temporanea del sito per aggiornamenti.",
+        "liabilityTitle": "2.4 Responsabilità",
+        "liabilityText1": "L'editore non può essere ritenuto responsabile in caso di guasto tecnico che impedisca l'accesso al sito o alle sue funzionalità.",
+        "liabilityText2": "L'utente è l'unico responsabile della protezione del proprio hardware e dei propri dati durante la navigazione.",
+        "linksTitle": "2.5 Collegamenti ipertestuali",
+        "linksText": "Il sito può contenere collegamenti ad altri siti. L'editore non si assume responsabilità per il contenuto di tali siti di terze parti."
+      },
+      "services": {
+        "title": "3. Servizi forniti",
+        "text": "Il sito https://chaindev.fr offre servizi di sviluppo web, creazione di siti, manutenzione e hosting. Queste informazioni non sono contrattuali salvo diversa indicazione esplicita."
+      },
+      "law": {
+        "title": "4. Legge applicabile e giurisdizione competente",
+        "text": "Qualsiasi controversia relativa all'uso del sito è soggetta alla legge francese. I tribunali di Clermont-Ferrand saranno esclusivamente competenti."
+      },
+      "contact": {
+        "title": "5. Contatto",
+        "text": "Per qualsiasi domanda relativa al presente avviso legale, contattaci via email: chaindev13@proton.me"
+      }
+    }
+  },
+  "navbar": {
+    "aria": {
+      "closeMenu": "Chiudi menu",
+      "langDropdown": "Selettore lingua",
+      "openMenu": "Apri menu"
+    },
+    "brandAlt": "logo Chaindev",
+    "languages": {
+      "ar": "العربية",
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "tr": "Türkçe"
+    },
+    "navLinks": {
+      "about": "Informazioni",
+      "contact": "Contatto",
+      "portfolio": "Portfolio",
+      "services": "Servizi"
+    }
+  },
+  "privacyPolicy": {
+    "pageTitle": "INFORMATIVA SULLA PRIVACY",
+    "lastUpdated": "Ultimo aggiornamento: 30 giugno 2025",
+    "introductionTitle": "INTRODUZIONE",
+    "introduction": "Chaindev si impegna a proteggere la privacy dei visitatori e degli utenti del suo sito https://chaindev.fr. Questa informativa spiega come raccogliamo, usiamo, condividiamo e proteggiamo le informazioni personali. Utilizzando il sito, accetti le pratiche descritte in questa informativa.",
+    "dataCollection": {
+      "title": "2. RACCOLTA DEI DATI PERSONALI",
+      "directTitle": "2.1 DATI FORNITI DIRETTAMENTE",
+      "directText": "Raccogliamo i dati personali che ci fornisci volontariamente, ad esempio quando compili il modulo di contatto o ci scrivi via email.",
+      "directItem": "Queste informazioni possono includere:",
+      "directItem1": "Il tuo nome e cognome",
+      "directItem2": "Il tuo indirizzo email",
+      "directItem3": "Il tuo numero di telefono (facoltativo)",
+      "automaticTitle": "2.2 DATI RACCOLTI AUTOMATICAMENTE",
+      "automaticText": "Durante la navigazione sul sito potremmo raccogliere automaticamente alcune informazioni tecniche, tra cui:",
+      "automaticItem1": "Il tuo indirizzo IP",
+      "automaticItem2": "Tipo e versione del browser",
+      "automaticItem3": "Il tuo sistema operativo",
+      "automaticItem4": "Pagine visitate sul nostro sito",
+      "automaticItem5": "Data e ora della tua visita",
+      "automaticItem6": "Tempi di visualizzazione delle pagine",
+      "automaticItem7": "Errori di download",
+      "cookiesTitle": "2.3 COOKIE E TECNOLOGIE SIMILARI",
+      "cookiesText": "Il nostro sito utilizza cookie e tecnologie simili per migliorare l'esperienza e analizzare l'uso del sito.",
+      "cookiesItem1": "Tipi di cookie utilizzati:",
+      "cookiesItem2": "Cookie essenziali: necessari per il funzionamento del sito",
+      "cookiesItem3": "Cookie di analisi/prestazioni: utilizziamo Google Analytics per comprendere come gli utenti interagiscono con il sito",
+      "cookiesManagement": "Puoi gestire le tue preferenze sui cookie tramite le impostazioni del tuo browser."
+    },
+    "usage": {
+      "title": "3. UTILIZZO DEI DATI PERSONALI",
+      "item1": "Rispondere alle tue richieste di contatto",
+      "item2": "Migliorare, personalizzare e sviluppare il sito",
+      "item3": "Comprendere e analizzare come utilizzi il sito",
+      "item4": "Rilevare, prevenire e risolvere problemi tecnici"
+    },
+    "sharing": {
+      "title": "4. CONDIVISIONE DEI DATI PERSONALI",
+      "serviceProvidersTitle": "4.1 FORNITORI DI SERVIZI",
+      "serviceProvidersText": "Potremmo condividere i tuoi dati con fornitori terzi per garantire il funzionamento del sito. Questi fornitori hanno accesso solo ai dati necessari per svolgere le loro attività.",
+      "legalObligationsTitle": "4.2 OBBLIGHI LEGALI",
+      "legalObligationsText": "Potremmo divulgare le tue informazioni se richiesto dalla legge o in risposta a richieste legali valide.",
+      "protectionTitle": "4.3 PROTEZIONE DEI NOSTRI DIRITTI",
+      "protectionText": "Potremmo divulgare le tue informazioni in caso di sospetta attività illegale, frode o per proteggere la sicurezza di persone."
+    },
+    "retention": {
+      "title": "5. CONSERVAZIONE DEI DATI",
+      "text": "I dati vengono conservati solo per il tempo necessario alle finalità indicate, salvo obbligo di legge."
+    },
+    "security": {
+      "title": "6. SICUREZZA DEI DATI",
+      "text": "Applichiamo misure tecniche e organizzative di sicurezza, ma nessun metodo è totalmente sicuro."
+    },
+    "rights": {
+      "title": "7. I TUOI DIRITTI",
+      "item1": "Diritto di accesso, rettifica, cancellazione, limitazione, portabilità",
+      "item2": "Diritto di opposizione",
+      "item3": "Diritto di revocare il consenso in qualsiasi momento",
+      "contactText": "Contattaci su chaindev13@proton.me per esercitare i tuoi diritti."
+    },
+    "transfers": {
+      "title": "8. TRASFERIMENTI INTERNAZIONALI DI DATI",
+      "text": "I tuoi dati possono essere trasferiti fuori dall'UE, ad esempio tramite Google Analytics, con garanzie conformi al GDPR."
+    },
+    "externalLinks": {
+      "title": "9. LINK A SITI ESTERNI",
+      "text": "Decliniamo ogni responsabilità per le politiche dei siti terzi accessibili tramite link esterni."
+    },
+    "changes": {
+      "title": "10. MODIFICHE A QUESTA INFORMATIVA",
+      "text": "Potremmo modificare questa informativa. Controllala regolarmente."
+    },
+    "contact": {
+      "title": "11. CONTATTACI",
+      "address": "Chaindev, 20 rue du 11 novembre, Résidence de Gandaillat, 63370 Lempdes, Email: chaindev13@proton.me"
+    }
+  },
+  "services": {
+    "cards": {
+      "ready": {
+        "caption": "Pronto a lanciare il tuo progetto?",
+        "text": "Contattami per un audit gratuito e un preventivo su misura."
+      },
+      "whyChoose": {
+        "caption": "Perché scegliere Chaindev?",
+        "items": [
+          "Approccio didattico: reporting chiaro & formazione",
+          "Supporto completo: analisi, sviluppo, assistenza",
+          "Infrastruttura OVH consolidata: affidabilità & performance",
+          "Multilingue nativo (FR/EN), altre lingue su richiesta",
+          "Tariffe TTC trasparenti e competitive"
+        ]
+      }
+    },
+    "cta": {
+      "button": "Richiedi un preventivo",
+      "linkTo": "/contact"
+    },
+    "description": "Supporto completo dalla creazione alla manutenzione per un sito performante e scalabile.",
+    "pageTitle": "Servizi",
+    "plans": {
+      "ecommerce": {
+        "features": [
+          "Catalogo prodotti, filtri dinamici",
+          "Gestione stock & ordini via back-office",
+          "Pagamenti Stripe/PayPal, flusso di checkout",
+          "Statistiche via Matomo o Google Analytics"
+        ],
+        "price": "2160 € TTC",
+        "title": "Sito E-Commerce"
+      },
+      "hebergement": {
+        "features": [
+          "3 evoluzioni/correzioni mensili",
+          "Deploy CI/CD automatizzato, test unitari & funzionali",
+          "Hosting OVH cloud/VPS, SSL Let's Encrypt",
+          "Monitoring uptime & Core Web Vitals",
+          "Aggiornamenti di sicurezza Symfony"
+        ],
+        "price": "300 € TTC / mese",
+        "title": "Hosting & Manutenzione"
+      },
+      "traduction": {
+        "features": [
+          "Aggiunta di lingua possibile in qualsiasi momento",
+          "Integrazione Symfony Translator",
+          "Ottimizzazione SEO multilingue",
+          "Routing i18n, URL localizzate & fallback",
+          "Traduzione di contenuti, interfaccia & navigazione"
+        ],
+        "price": "30 € TTC / pagina / lingua",
+        "title": "Traduzione Web"
+      },
+      "vitrine": {
+        "features": [
+          "Accessibilità WCAG 2.1, mobile/tablet",
+          "CI/CD GitLab, back-office semplice",
+          "Modulo di contatto, Google Maps, galleria immagini",
+          "Pagine: Home, About, Services, Contact",
+          "SEO on-page (meta, sitemap, tag)"
+        ],
+        "price": "1080 € TTC",
+        "title": "Sito Vetrina"
+      }
+    },
+    "subtitle": "Chaindev - Sviluppatore Freelance"
+  },
+  "thankyou": {
+    "content": "Risponderò il prima possibile.",
+    "title": "Grazie per il tuo messaggio!"
+  }
+}

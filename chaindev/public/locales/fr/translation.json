@@ -75,23 +75,23 @@
   },
   "legalNotice": {
     "pageTitle": "Mentions légales",
-    "lastUpdated": "Dernière mise à jour : 30 juin 2025",
+    "lastUpdated": "<0>Dernière mise à jour :</0> <1>{{date}}</1>",
     "sections": {
       "presentationSite": {
         "title": "1. Présentation du site",
         "legalInfoTitle": "1.1 Informations légales",
         "legalInfoItems": {
-          "company": "Chaindev",
-          "structure": "Entreprise Individuelle",
-          "address": "20 rue du 11 novembre, Résidence de Gandaillat, 63370 Lempdes",
-          "siret": "943 744 482 00010",
-          "director": "Mr Ozdal Seyfullah",
-          "contactEmail": "chaindev13@proton.me"
+          "company": " Dénomination sociale : Chaindev",
+          "structure": " Forme juridique : Entreprise Individuelle",
+          "address": "Adresse du siège social: 20 rue du 11 novembre, Résidence de Gandaillat, 63370 Lempdes",
+          "siret": " SIRET : 943 744 482 00010",
+          "director": " Directeur de la publication: Mr Ozdal Seyfullah",
+          "contactEmail": " Email de contact : chaindev13@proton.me"
         },
         "hostingTitle": "1.2 Hébergement",
         "hostingItems": {
-          "provider": "OVH",
-          "providerAddress": "2 rue Kellermann, 59100 Roubaix, France"
+          "provider": " Hébergeur du site : OVH",
+          "providerAddress": " Adresse: 2 rue Kellermann, 59100 Roubaix, France"
         }
       },
       "terms": {
@@ -104,10 +104,10 @@
         "contentText": "Tous les éléments du site (marques, textes, images, sons, vidéos, etc.) sont protégés par les lois sur la propriété intellectuelle. Toute reproduction ou exploitation sans autorisation écrite est strictement interdite.",
         "managementTitle": "2.3 Gestion du site",
         "managementItems": [
-          "Suspension, interruption ou limitation de l’accès à tout ou partie du site",
-          "Suppression de toute information pouvant perturber le fonctionnement",
-          "Suspension temporaire du site pour des mises à jour"
+          "Suspension, interruption ou limitation de l’accès à tout ou partie du site."
         ],
+        "managementItem2": "Suppression de toute information pouvant perturber le fonctionnement.",
+        "managementItem3": "Suspension temporaire du site pour des mises à jour.",
         "liabilityTitle": "2.4 Responsabilités",
         "liabilityText1": "L’éditeur ne saurait être tenu responsable en cas de défaillance technique empêchant l’accès au site ou à ses fonctionnalités.",
         "liabilityText2": "L’utilisateur est seul responsable de la protection de son matériel et de ses données lors de sa navigation.",
@@ -115,7 +115,7 @@
         "linksText": "Le site peut contenir des liens vers d’autres sites. L’éditeur n’assume aucune responsabilité concernant le contenu de ces sites tiers."
       },
       "services": {
-        "title": " Services ",
+        "title": "3. Services fournis ",
         "text": "Le site https://chaindev.fr propose des services de développement web, de création de sites internet, de maintenance et d’hébergement. Ces informations sont non contractuelles sauf mention contraire explicite."
       },
       "law": {
@@ -150,85 +150,81 @@
     }
   },
   "privacyPolicy": {
-    "pageTitle": "Politique de confidentialité",
+    "pageTitle": "POLITIQUE DE CONFIDENTIALITÉ",
     "lastUpdated": "Dernière mise à jour : 30 juin 2025",
+    "introductionTitle": "INTRODUCTION",
     "introduction": "Chaindev s’engage à protéger la vie privée des visiteurs et utilisateurs de son site web https://chaindev.fr. La présente politique de confidentialité explique comment nous collectons, utilisons, partageons et protégeons vos informations personnelles. En utilisant notre site, vous acceptez les pratiques décrites dans la présente politique.",
     "dataCollection": {
-      "title": "2. Collecte des données personnelles",
-      "directTitle": "2.1 Données que vous nous fournissez directement",
+      "title": "2. COLLECTE DE DONNEES PERSONNELLES",
+      "directTitle": "2.1 DONNEES QUE VOUS NOUS FOURNISSEZ DIRECTEMENT",
       "directText": "Nous collectons les données personnelles que vous nous fournissez volontairement, notamment lorsque vous remplissez notre formulaire de contact ou nous contactez par e-mail.",
-      "directItems": [
-        "Vos nom et prénom",
-        "Votre adresse e-mail",
-        "Votre numéro de téléphone (facultatif)"
-      ],
-      "automaticTitle": "2.2 Données collectées automatiquement",
+      "directItem": "Ces informations peuvent inclure :",
+      "directItem1": "Vos nom et prénom",
+      "directItem2": "Votre adresse e-mail",
+      "directItem3": "Votre numéro de téléphone (facultatif)",
+      "automaticTitle": "2.2 DONNEES COLLECTÉES AUTOMATIQUEMENT",
       "automaticText": "Lorsque vous naviguez sur notre site, nous pouvons collecter automatiquement certaines informations techniques, notamment :",
-      "automaticItems": [
-        "Votre adresse IP",
-        "Le type et la version de votre navigateur",
-        "Votre système d’exploitation",
-        "Les pages consultées sur notre site",
-        "La date et l’heure de votre visite",
-        "Les temps de consultation des pages",
-        "Les erreurs de téléchargement"
-      ],
-      "cookiesTitle": "2.3 Cookies et technologies similaires",
+      "automaticItem1": "Votre adresse IP",
+      "automaticItem2": "Le type et la version de votre navigateur",
+      "automaticItem3": "Votre système d’exploitation",
+      "automaticItem4": "Les pages consultées sur notre site",
+      "automaticItem5": "La date et l’heure de votre visite",
+      "automaticItem6": "Les temps de consultation des pages",
+      "automaticItem7": "Les erreurs de téléchargement",
+      "cookiesTitle": "2.3 COOKIES ET TECHNOLOGIES SIMILAIRES",
       "cookiesText": "Notre site utilise des cookies et d’autres technologies similaires pour améliorer votre expérience de navigation et analyser l’utilisation du site.",
-      "cookiesItems": [
-        "Cookies essentiels : nécessaires au fonctionnement du site",
-        "Cookies d’analyse/performance : nous utilisons Google Analytics pour comprendre comment les visiteurs interagissent avec le site"
-      ]
+      "cookiesItem1": "Types de cookies utilisés :",
+
+      "cookiesItem2": "Cookies essentiels : nécessaires au fonctionnement du site",
+      "cookiesItem3": "Cookies d’analyse/performance : nous utilisons Google Analytics pour comprendre comment les visiteurs interagissent avec le site",
+      "cookiesManagement": "Vous pouvez gérer vos préférences en matière de cookies via les paramètres de votre navigateur."
     },
     "usage": {
-      "title": "3. Utilisation des données personnelles",
-      "items": [
-        "Répondre à vos demandes de contact",
-        "Améliorer, personnaliser et développer notre site",
-        "Comprendre et analyser comment vous utilisez notre site",
-        "Détecter, prévenir et résoudre les problèmes techniques"
-      ]
+      "title": "3. UTILISATION DES DONNEES PERSONNELLES",
+      "item1": "Répondre à vos demandes de contact",
+
+      "item2": "Améliorer, personnaliser et développer notre site",
+      "item3": "Comprendre et analyser comment vous utilisez notre site",
+      "item4": "Détecter, prévenir et résoudre les problèmes techniques"
     },
     "sharing": {
-      "title": "4. Partage des données personnelles",
-      "serviceProvidersTitle": "4.1 Prestataires de services",
+      "title": "4.PARTAGE DES DONNÉES PERSONNELLES ",
+      "serviceProvidersTitle": "4.1 PRESTATAIRES DE SERVICES",
       "serviceProvidersText": "Nous pouvons partager vos données avec des prestataires tiers pour assurer le fonctionnement du site. Ces prestataires n’ont accès aux données que pour exécuter ces tâches.",
-      "legalObligationsTitle": "4.2 Obligations légales",
+      "legalObligationsTitle": "4.2 OBLIGATIONS LÉGALES",
       "legalObligationsText": "Nous pouvons divulguer vos informations si la loi l’exige ou en réponse à des demandes légales valides.",
-      "protectionTitle": "4.3 Protection de nos droits",
+      "protectionTitle": "4.3 PROTECTION DE NOS DROITS",
       "protectionText": "Nous pouvons divulguer vos informations en cas de suspicion d’activités illégales, fraude, ou pour protéger la sécurité de toute personne."
     },
     "retention": {
-      "title": "5. Conservation des données",
+      "title": "5. CONSERVATION DES DONNÉES",
       "text": "Les données sont conservées le temps nécessaire aux finalités prévues, sauf obligation légale contraire."
     },
     "security": {
-      "title": "6. Sécurité des données",
+      "title": "6. SÉCURITÉ DES DONNÉES",
       "text": "Nous appliquons des mesures de sécurité techniques et organisationnelles, mais aucune méthode n’est totalement sécurisée."
     },
     "rights": {
-      "title": "7. Vos droits",
-      "items": [
-        "Droit d’accès, rectification, effacement, limitation, portabilité",
-        "Droit d’opposition",
-        "Droit de retirer votre consentement à tout moment"
-      ],
+      "title": "7. VOS DROITS",
+      "item1": "Droit d’accès, rectification, effacement, limitation, portabilité",
+      "item2": "Droit d’opposition",
+      "item3": "Droit de retirer votre consentement à tout moment",
       "contactText": "Contactez-nous à chaindev13@proton.me pour exercer vos droits."
     },
     "transfers": {
-      "title": "8. Transferts internationaux de données",
+      "title": "8. TRANSFERTS INTERNATIONAUX DE DONNÉES",
       "text": "Vos données peuvent être transférées hors UE, notamment via Google Analytics, avec des garanties conformes au RGPD."
     },
     "externalLinks": {
-      "title": "9. Liens vers d'autres sites",
+      "title": "9. LIENS VERS D'AUTRES SITES",
       "text": "Nous déclinons toute responsabilité concernant les politiques des sites tiers accessibles via des liens externes."
     },
     "changes": {
-      "title": "10. Modifications de la politique de confidentialité",
+      "title": "10. MODIFICATIONS DE LA POLITIQUE DE CONFIDENTIALITÉ",
       "text": "Nous pouvons modifier cette politique. Consultez-la régulièrement."
     },
     "contact": {
-      "title": "11. Contactez-nous",
+      "title": "11. CONTACTEZ-NOUS",
       "address": "Chaindev, 20 rue du 11 novembre, Résidence de Gandaillat, 63370 Lempdes, Email : chaindev13@proton.me"
     }
   },

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
@@ -7,32 +7,52 @@ import image from "../../assets/images/Bacgroundimg.png";
 import ReCAPTCHA from "react-google-recaptcha";
 
 function Contact() {
-  const [state, handleSubmit] = useForm("xpwlpvjo"); // ID Formspree
+  const [state, handleSubmit] = useForm("mwpnwzrz"); // Remplacer par ton ID Formspree
   const [phone, setPhone] = useState("");
   const [captchaValue, setCaptchaValue] = useState(null);
-  const [captchaError, setCaptchaError] = useState("");
+  const [errors, setErrors] = useState({});
+  const errorSummaryRef = useRef(null);
+  const successRef = useRef(null);
   const { t } = useTranslation();
 
-  // fonction wrapper pour valider captcha avant submit
-  const handleSubmitWithCaptcha = async (e) => {
+  // Regex email simple mais robuste
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Validation captcha + inputs avant envoi
+  const handleSubmitWithCaptcha = (e) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const newErrors = {};
 
     if (!captchaValue) {
-      setCaptchaError("⚠️ Merci de valider le reCAPTCHA avant d’envoyer.");
+      newErrors.captcha = "⚠️ Merci de valider le reCAPTCHA.";
+    }
+    if (!emailRegex.test(form.email.value)) {
+      newErrors.email = "Adresse email invalide.";
+    }
+    if (form.message.value.trim().length < 10) {
+      newErrors.message = "Le message doit contenir au moins 10 caractères.";
+    }
+    if (phone.replace(/\D/g, "").length < 8) {
+      newErrors.phone = "Numéro de téléphone invalide.";
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      errorSummaryRef.current?.focus();
       return;
     }
 
-    setCaptchaError(""); // reset message
-    handleSubmit(e);
+    handleSubmit(e); // délègue à Formspree
   };
 
-  // Effet pour faire disparaître le toast après 3 secondes
+  // focus sur message de succès
   useEffect(() => {
-    if (captchaError) {
-      const timer = setTimeout(() => setCaptchaError(""), 3000);
-      return () => clearTimeout(timer);
+    if (state.succeeded) {
+      successRef.current?.focus();
     }
-  }, [captchaError]);
+  }, [state.succeeded]);
 
   if (state.succeeded) {
     return (
@@ -40,7 +60,12 @@ function Contact() {
         className="relative w-full min-h-screen bg-cover bg-right-top flex flex-col items-center justify-center px-4"
         style={{ backgroundImage: `url(${image})` }}
       >
-        <div className="bg-white p-8 rounded shadow-md max-w-lg mx-auto text-center">
+        <div
+          ref={successRef}
+          role="status"
+          tabIndex={-1}
+          className="bg-white p-8 rounded shadow-md max-w-lg mx-auto text-center"
+        >
           <h1 className="text-3xl font-bold text-slate-900 mb-4">
             {t("thankyou.title")}
           </h1>
@@ -68,64 +93,69 @@ function Contact() {
         <h3>{t("contact.subtitle")}</h3>
         <h4 className="mb-4">{t("contact.instruction")}</h4>
 
-        {/* Toast d'erreur captcha */}
-        {captchaError && (
-          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded shadow-md flex items-center animate-slideDown z-50">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 mr-2 flex-shrink-0"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M8.257 3.099c.366-.446.957-.446 1.323 0l7 8.5a1 1 0 01-.86 1.6H2.117a1 1 0 01-.86-1.6l7-8.5zM11 13a1 1 0 10-2 0 1 1 0 002 0zm-1-2a.75.75 0 01-.75-.75v-3.5a.75.75 0 011.5 0v3.5A.75.75 0 0110 11z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <span className="text-sm">{captchaError}</span>
+        {/* Résumé des erreurs */}
+        {Object.keys(errors).length > 0 && (
+          <div
+            id="errorSummary"
+            ref={errorSummaryRef}
+            tabIndex={-1}
+            role="alert"
+            className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded"
+          >
+            <p>Le formulaire contient des erreurs :</p>
+            <ul className="list-disc ml-6">
+              {Object.entries(errors).map(([field, msg]) => (
+                <li key={field}>
+                  <a href={`#${field}`} role="link">
+                    Corriger {field} : {msg}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 
+        {/* Formulaire Formspree */}
         <form onSubmit={handleSubmitWithCaptcha} className="mt-4 space-y-5">
+          {/* Honeypot anti-bot */}
+          <input
+            type="text"
+            name="_gotcha"
+            style={{ display: "none" }}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+
           {/* Nom & Prénom */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label
-                htmlFor="nom"
-                className="text-sm font-medium text-slate-900 mb-1 block"
-              >
-                {t("form.fields.lastName")}
-              </label>
+              <label htmlFor="nom">{t("form.fields.lastName")}</label>
               <input
                 id="nom"
                 type="text"
                 name="nom"
-                placeholder={t("form.fields.lastNamePlaceholder")}
-                className="w-full py-2.5 px-4 bg-gray-100 border border-gray-200 text-sm text-slate-800 focus:border-slate-900 focus:bg-transparent outline-none transition-all"
+                autoComplete="family-name"
+                aria-required="true"
+                required
+                maxLength={100}
+                className="w-full py-2.5 px-4 bg-gray-100 border"
               />
-              <ValidationError
-                prefix={t("form.fields.lastName")}
-                field="nom"
-                errors={state.errors}
-              />
+              <ValidationError prefix="Nom" field="nom" errors={state.errors} />
             </div>
             <div>
-              <label
-                htmlFor="prenom"
-                className="text-sm font-medium text-slate-900 mb-1 block"
-              >
-                {t("form.fields.firstName")}
-              </label>
+              <label htmlFor="prenom">{t("form.fields.firstName")}</label>
               <input
                 id="prenom"
                 type="text"
                 name="prenom"
-                placeholder={t("form.fields.firstNamePlaceholder")}
-                className="w-full py-2.5 px-4 bg-gray-100 border border-gray-200 text-sm text-slate-800 focus:border-slate-900 focus:bg-transparent outline-none transition-all"
+                autoComplete="given-name"
+                aria-required="true"
+                required
+                maxLength={100}
+                className="w-full py-2.5 px-4 bg-gray-100 border"
               />
               <ValidationError
-                prefix={t("form.fields.firstName")}
+                prefix="Prénom"
                 field="prenom"
                 errors={state.errors}
               />
@@ -134,21 +164,31 @@ function Contact() {
 
           {/* Email */}
           <div>
-            <label
-              htmlFor="email"
-              className="text-sm font-medium text-slate-900 mb-1 block"
-            >
-              {t("form.fields.email")}
-            </label>
+            <label htmlFor="email">{t("form.fields.email")}</label>
             <input
               id="email"
               type="email"
               name="email"
-              placeholder={t("form.fields.emailPlaceholder")}
-              className="w-full py-2.5 px-4 bg-gray-100 border border-gray-200 text-sm text-slate-800 focus:border-slate-900 focus:bg-transparent outline-none transition-all"
+              autoComplete="email"
+              aria-required="true"
+              required
+              maxLength={320}
+              aria-invalid={!!errors.email}
+              aria-describedby={
+                errors.email ? "emailError emailHelp" : "emailHelp"
+              }
+              className="w-full py-2.5 px-4 bg-gray-100 border"
             />
+            <p id="emailHelp" className="sr-only">
+              L’adresse email doit être valide (exemple : nom@domaine.fr).
+            </p>
+            {errors.email && (
+              <p id="emailError" role="alert" className="text-red-600 text-sm">
+                {errors.email}
+              </p>
+            )}
             <ValidationError
-              prefix={t("form.fields.email")}
+              prefix="Email"
               field="email"
               errors={state.errors}
             />
@@ -156,40 +196,34 @@ function Contact() {
 
           {/* Téléphone */}
           <div>
-            <label
-              htmlFor="phone"
-              className="text-sm font-medium text-slate-900 mb-1 block"
-            >
-              {t("form.fields.phone")}
-            </label>
+            <label htmlFor="phone">{t("form.fields.phone")}</label>
             <PhoneInput
               defaultCountry="fr"
               value={phone}
               onChange={setPhone}
-              inputClassName="w-full py-2.5 px-4 bg-gray-100 border border-gray-200 text-sm text-slate-800 focus:border-slate-900 focus:bg-transparent outline-none transition-all"
-              placeholder={t("form.fields.phonePlaceholder")}
+              inputClassName="w-full py-2.5 px-4 bg-gray-100 border"
+              autoComplete="tel"
+              aria-required="true"
+              required
             />
             <input type="hidden" name="phone" value={phone} />
-            <ValidationError
-              prefix={t("form.fields.phone")}
-              field="phone"
-              errors={state.errors}
-            />
+            {errors.phone && (
+              <p id="phoneError" role="alert" className="text-red-600 text-sm">
+                {errors.phone}
+              </p>
+            )}
           </div>
 
           {/* Objet */}
           <div>
-            <label
-              htmlFor="objet"
-              className="text-sm font-medium text-slate-900 mb-1 block"
-            >
-              {t("form.fields.subject")}
-            </label>
+            <label htmlFor="objet">{t("form.fields.subject")}</label>
             <select
               id="objet"
               name="objet"
               defaultValue=""
-              className="w-full py-2.5 px-4 bg-gray-100 border border-gray-200 text-sm text-slate-800 focus:border-slate-900 focus:bg-transparent outline-none transition-all"
+              aria-required="true"
+              required
+              className="w-full py-2.5 px-4 bg-gray-100 border"
             >
               <option value="" disabled hidden>
                 {t("form.fields.subjectPlaceholder")}
@@ -208,34 +242,45 @@ function Contact() {
               </option>
               <option value="Autre">{t("form.options.other")}</option>
             </select>
-            <ValidationError
-              prefix={t("form.fields.subject")}
-              field="objet"
-              errors={state.errors}
-            />
           </div>
 
           {/* Message */}
           <div>
-            <label
-              htmlFor="message"
-              className="text-sm font-medium text-slate-900 mb-1 block"
-            >
-              {t("form.fields.message")}
-            </label>
+            <label htmlFor="message">{t("form.fields.message")}</label>
             <textarea
               id="message"
               name="message"
               rows="6"
+              maxLength={2000}
+              aria-required="true"
+              aria-invalid={!!errors.message}
+              aria-describedby={
+                errors.message ? "messageError messageHelp" : "messageHelp"
+              }
               placeholder={t("form.fields.messagePlaceholder")}
-              className="w-full px-4 pt-3 bg-gray-100 border border-gray-200 text-sm text-slate-800 focus:border-slate-900 focus:bg-transparent outline-none transition-all"
+              className="w-full px-4 pt-3 bg-gray-100 border"
             />
-            <ValidationError
-              prefix={t("form.fields.message")}
-              field="message"
-              errors={state.errors}
-            />
+            <p id="messageHelp" className="sr-only">
+              Votre message doit contenir au moins 10 caractères et ne pas
+              dépasser 2000.
+            </p>
+            {errors.message && (
+              <p
+                id="messageError"
+                role="alert"
+                className="text-red-600 text-sm"
+              >
+                {errors.message}
+              </p>
+            )}
           </div>
+
+          {/* Champ caché pour reCAPTCHA */}
+          <input
+            type="hidden"
+            name="g-recaptcha-response"
+            value={captchaValue || ""}
+          />
 
           {/* reCAPTCHA */}
           <div className="flex justify-center">
@@ -249,9 +294,9 @@ function Contact() {
           <button
             type="submit"
             disabled={state.submitting}
-            className="w-full py-2.5 px-4 text-white bg-slate-900 hover:bg-slate-800 text-sm font-medium tracking-wide border-0 outline-none cursor-pointer"
+            className="w-full py-2.5 px-4 text-white bg-slate-900 hover:bg-slate-800"
           >
-            {t("form.submitButton")}
+            {state.submitting ? "Envoi en cours…" : t("form.submitButton")}
           </button>
         </form>
       </div>

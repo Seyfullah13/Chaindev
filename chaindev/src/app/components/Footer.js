@@ -2,13 +2,16 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content items-center p-4">
+    <footer className="footer sm:footer-horizontal bg-base-100 text-base-content items-center p-4">
+
       <aside className="grid-flow-col items-center">
         <Image src="/icon.jpg" width={40} height={40} alt="logoChaindev" />
-        <p>Copyright © {new Date().getFullYear()} - Tous droits réservés</p>
+        <p className="transition-colors duration-200">
+          Copyright © {new Date().getFullYear()} - Tous droits réservés
+        </p>
       </aside>
 
-      <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+      <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end text-base-content transition-colors duration-200">
         <a href="https://github.com/Seyfullah13" aria-label="Github">
           <Image src="/github-icon.svg" width={24} height={24} alt="logoGithub" />
         </a>

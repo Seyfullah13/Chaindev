@@ -1,2 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* Tailwind + DaisyUI */
+.text-base-content, .menu a {
+    @apply transition-colors duration-200;
+  }
+  

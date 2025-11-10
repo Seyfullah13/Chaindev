@@ -83,12 +83,7 @@ export default function Home() {
                 <p>Mises à jour, Sauvegardes, Petites modifications.</p>
               </div>
             </div>
-          <ul className="list-disc pl-5 space-y-2">
-            <li>Conception sur mesure : interface intuitive, design responsive, code propre.</li>
-            <li>Multilingue : français + 5 langues (anglais, arabe, espagnol, turc, italien).</li>
-            <li>Hébergement sécurisé : sauvegardes quotidiennes, SSL, disponibilité garantie.</li>
-            <li>Maintenance optionnelle : mises à jour, sauvegardes, petites modifications.</li>
-          </ul>
+        
         </section>
           <h3 className="text-lg font-semibold mb-2">Pour qui ?</h3>
           <p className="mb-4">

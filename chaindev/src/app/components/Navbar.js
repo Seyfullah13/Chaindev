@@ -1,56 +1,99 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import logo from "../icon.jpg";
 
 export default function Navbar() {
-  return (
-    <div className="navbar bg-base-100 shadow-sm">
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const linkCommonClasses =
+  "px-3 py-2 rounded-md transition transform duration-150 ease-in-out " +
+  "hover:bg-neutral hover:text-neutral-content hover:scale-102 hover:shadow-sm " +
+  "hover:underline hover:underline-offset-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral";
+
+
+  return (
+    <div className="navbar bg-base-100 shadow-sm px-4">
       <div className="navbar-start">
-        <a href="../home">
+        <a href="../home" aria-label="Accueil" className="inline-flex items-center">
           <Image src={logo} alt="logoChaindev" width={40} height={40} />
         </a>
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        {/* text-base-content -> s'adapte au theme; transition pour un rendu fluide */}
         <ul className="menu menu-horizontal px-1 text-base-content transition-colors duration-200">
-          <li><a>Qui suis -je?</a></li>
-          <li><a>Prestations</a></li>
-          <li><a>Portfolio</a></li>
-          <li><a>Contact</a></li>
+          <li><a className={linkCommonClasses}>Qui suis-je?</a></li>
+          <li><a className={linkCommonClasses}>Prestations</a></li>
+          <li><a className={linkCommonClasses}>Portfolio</a></li>
+          <li><a className={linkCommonClasses}>Contact</a></li>
         </ul>
       </div>
 
-      <label className="swap swap-rotate ml-auto">
-        {/* checkbox DaisyUI : value="dark" -> checked = dark, unchecked = light */}
-        <input type="checkbox" className="theme-controller" value="dark" />
-
-        {/* sun icon */}
-        <svg className="swap-off h-10 w-10 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+      <label className="toggle text-base-content mx-2">
+        <input type="checkbox" value="dark" className="theme-controller" aria-label="Basculer thème" />
+        <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
+          <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </g>
         </svg>
 
-        {/* moon icon */}
-        <svg className="swap-on h-10 w-10 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+        <svg aria-label="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
+          <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </g>
         </svg>
       </label>
 
-      <div className="dropdown">
-        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> 
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
-          </svg>
-        </div>
+      <div className="dropdown dropdown-end lg:hidden" ref={dropdownRef}>
+        <button
+          type="button"
+          aria-haspopup="true"
+          aria-expanded={isDropdownOpen}
+          onClick={() => setIsDropdownOpen((s) => !s)}
+          className="btn btn-ghost p-2"
+          aria-label={isDropdownOpen ? "Fermer le menu" : "Ouvrir le menu"}
+        >
+          {!isDropdownOpen ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-150" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transform transition-transform duration-150" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fillRule="evenodd" d="M12.293 16.293a1 1 0 010-1.414L15.586 11H4a1 1 0 110-2h11.586l-3.293-3.293a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clipRule="evenodd" />
+            </svg>
+          )}
+        </button>
 
         <ul
-          tabIndex="-1"
-          className="menu menu-sm dropdown-content bg-neutral rounded-box z-1 mt-3 w-52 p-2 shadow text-base-content transition-colors duration-200"
+          className={`menu menu-sm dropdown-content bg-base-100 rounded-box mt-1 w-52 p-2 shadow text-base-content transition-all duration-150 origin-top-right ${
+            isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
+          }`}
+          role="menu"
         >
-          <li><a>Qui suis-je?</a></li>
-          <li><a>Prestations</a></li>
-          <li><a>Portfolio</a></li>
-          <li><a>Contact</a></li>
+          <li><a role="menuitem" className={linkCommonClasses}>Qui suis-je?</a></li>
+          <li><a role="menuitem" className={linkCommonClasses}>Prestations</a></li>
+          <li><a role="menuitem" className={linkCommonClasses}>Portfolio</a></li>
+          <li><a role="menuitem" className={linkCommonClasses}>Contact</a></li>
         </ul>
       </div>
     </div>

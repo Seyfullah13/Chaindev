@@ -36,10 +36,10 @@ export default function Navbar() {
       {/* Liens centrés verticalement */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 text-base-content transition-colors duration-200 flex items-center space-x-1">
-          <li><a className={linkCommonClasses}>Qui suis-je?</a></li>
-          <li><a className={linkCommonClasses}>Prestations</a></li>
+          <li><a className={linkCommonClasses} href="../whoami">Qui suis-je?</a></li>
+          <li><a className={linkCommonClasses} href="../prestations">Prestations</a></li>
           <li><a className={linkCommonClasses}>Portfolio</a></li>
-          <li><a className={linkCommonClasses}>Contact</a></li>
+          <li><a className={linkCommonClasses} href="../contact">Contact</a></li>
         </ul>
       </div>
 

@@ -2,7 +2,7 @@ export default function ContactPage() {
   return (
     <section className="bg-white dark:bg-gray-900 flex flex-col flex-grow min-h-screen">
       <div className="flex flex-col items-center justify-start flex-grow px-4 pt-6 pb-10">
-        <div className="w-full max-w-screen-md">
+        <div className="w-full max-w-screen-lg"> {/* Plus large sur desktop */}
           <h2 className="mb-3 text-3xl sm:text-4xl font-extrabold text-center text-gray-900 dark:text-white">
             Contactez-moi
           </h2>
@@ -11,9 +11,9 @@ export default function ContactPage() {
             Une question technique ? Un projet multilingue ? Décrivez votre besoin et je reviens vers vous.
           </p>
 
-          <form action="#" className="mx-auto w-full max-w-md space-y-6 flex flex-col">
+          <form action="#" className="mx-auto w-full space-y-6 flex flex-col">
             {/* Email */}
-            <div className="w-full">
+            <div className="w-full md:w-3/4 lg:w-2/3 mx-auto"> {/* Formulaire plus large */}
               <label
                 htmlFor="email"
                 className="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -31,7 +31,7 @@ export default function ContactPage() {
             </div>
 
             {/* Objet */}
-            <div className="w-full">
+            <div className="w-full md:w-3/4 lg:w-2/3 mx-auto">
               <label
                 htmlFor="subject"
                 className="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -49,7 +49,7 @@ export default function ContactPage() {
             </div>
 
             {/* Message */}
-            <div className="w-full">
+            <div className="w-full md:w-3/4 lg:w-2/3 mx-auto">
               <label
                 htmlFor="message"
                 className="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"

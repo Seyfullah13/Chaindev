@@ -28,7 +28,7 @@ export default function Navbar() {
       
       {/* Logo légèrement décollé */}
       <div className="navbar-start flex items-center">
-        <a href="../home" aria-label="Accueil" className="inline-flex items-center ml-2">
+        <a href="./" aria-label="Accueil" className="inline-flex items-center ml-2">
           <Image src={logo} alt="logoChaindev" width={42} height={42} />
         </a>
       </div>

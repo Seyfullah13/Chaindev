@@ -1,4 +1,5 @@
 
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -96,12 +97,14 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
-            <button className="btn btn-soft btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">
-              Demandez un devis gratuit
-            </button>
-            <button className="btn btn-soft btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">
-              Découvrez mes services
-            </button>
+          <Link href="/contact" className="btn btn-soft btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">
+  Demandez un devis gratuit
+</Link>
+
+<Link href="/prestations" className="btn btn-soft btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">
+  Découvrez mes services
+</Link>
+
           </div>
         </section>
       </div>

@@ -25,15 +25,15 @@ export default function Navbar() {
 
   return (
     <div className="navbar bg-base-100 shadow-sm px-6 py-3 flex items-center">
-      
-      {/* Logo légèrement décollé */}
+
+      {/* Logo */}
       <div className="navbar-start flex items-center">
         <a href="./" aria-label="Accueil" className="inline-flex items-center ml-2">
           <Image src={logo} alt="logoChaindev" width={42} height={42} />
         </a>
       </div>
 
-      {/* Liens centrés verticalement */}
+      {/* Liens desktop */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 text-base-content transition-colors duration-200 flex items-center space-x-1">
           <li><a className={linkCommonClasses} href="../whoami">Qui suis-je?</a></li>
@@ -45,8 +45,8 @@ export default function Navbar() {
 
       {/* Partie droite */}
       <div className="navbar-end flex items-center space-x-4 mr-2">
-        
-        {/* Switch de thème animé */}
+
+        {/* Switch de thème */}
         <label className="toggle text-base-content flex items-center cursor-pointer transition-transform duration-150 hover:scale-105 active:scale-95">
           <input type="checkbox" value="dark" className="theme-controller" aria-label="Basculer thème" />
           <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
@@ -96,10 +96,10 @@ export default function Navbar() {
             }`}
             role="menu"
           >
-            <li><a role="menuitem" className={linkCommonClasses}>Qui suis-je?</a></li>
-            <li><a role="menuitem" className={linkCommonClasses}>Prestations</a></li>
+            <li><a role="menuitem" className={linkCommonClasses} href="../whoami">Qui suis-je?</a></li>
+            <li><a role="menuitem" className={linkCommonClasses} href="../prestations">Prestations</a></li>
             <li><a role="menuitem" className={linkCommonClasses}>Portfolio</a></li>
-            <li><a role="menuitem" className={linkCommonClasses}>Contact</a></li>
+            <li><a role="menuitem" className={linkCommonClasses} href="../contact">Contact</a></li>
           </ul>
         </div>
       </div>

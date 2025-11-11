@@ -38,7 +38,7 @@ export default function Navbar() {
         <ul className="menu menu-horizontal px-1 text-base-content transition-colors duration-200 flex items-center space-x-1">
           <li><a className={linkCommonClasses} href="../whoami">Qui suis-je?</a></li>
           <li><a className={linkCommonClasses} href="../prestations">Prestations</a></li>
-          <li><a className={linkCommonClasses}>Portfolio</a></li>
+          <li><a className={linkCommonClasses} href="https://www.seyfullah-ozdal.fr">Portfolio</a></li>
           <li><a className={linkCommonClasses} href="../contact">Contact</a></li>
         </ul>
       </div>
@@ -98,7 +98,7 @@ export default function Navbar() {
           >
             <li><a role="menuitem" className={linkCommonClasses} href="../whoami">Qui suis-je?</a></li>
             <li><a role="menuitem" className={linkCommonClasses} href="../prestations">Prestations</a></li>
-            <li><a role="menuitem" className={linkCommonClasses}>Portfolio</a></li>
+            <li><a role="menuitem" className={linkCommonClasses} href="https://www.seyfullah-ozdal.fr">Portfolio</a></li>
             <li><a role="menuitem" className={linkCommonClasses} href="../contact">Contact</a></li>
           </ul>
         </div>

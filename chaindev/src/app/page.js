@@ -21,32 +21,32 @@ export default function Home() {
        
 
         <section aria-labelledby="engagements" className="mb-6">
-          <h3 id="engagements" className="text-lg font-semibold mb-4">Engagements</h3>
+          <h2 id="engagements" className="text-lg font-semibold mb-4"> Mes engagements</h2>
 
-          <div className="flex flex-col sm:flex-row flex-wrap gap-4 mb-6">
-            <div className="card card-border bg-base-100 w-full sm:w-96">
-              <div className="card-body">
-                <h4 className="card-title">Accompagnement complet</h4>
+          <div className="flex flex-col sm:flex-row  gap-6 mb-6 items-stretch">
+            <div className="card card-border bg-base-100 w-full sm:w-1/2 md:w-1/4">
+              <div className="card-body flex-1">
+                <h3 className="card-title">Accompagnement complet</h3>
                 <p>Du cahier des charges au déploiement.</p>
               </div>
             </div>
 
-            <div className="card card-border bg-base-100 w-full sm:w-96">
-              <div className="card-body">
+            <div className=" flex flex-col card card-border bg-base-100 w-full sm:w-1/2 md:w-1/4">
+              <div className="card-body flex-1">
                 <h4 className="card-title">Interlocuteur unique</h4>
                 <p>Suivi réactif et sans intermédiaire.</p>
               </div>
             </div>
 
-            <div className="card card-border bg-base-100 w-full sm:w-96">
-              <div className="card-body">
+            <div className=" flex flex-col card card-border bg-base-100 w-full sm:w-1/2 md: w-1/4">
+              <div className="card-body flex-1">
                 <h4 className="card-title">Autonomie</h4>
                 <p>Formation et documentation pour gérer votre site facilement.</p>
               </div>
             </div>
 
-            <div className="card card-border bg-base-100 w-full sm:w-96">
-              <div className="card-body">
+            <div className="  flex flex-col card card-border bg-base-100 w-full sm:w-1/2 md:w-1/4">
+              <div className="card-body flex-1">
                 <h4 className="card-title">Transparence</h4>
                 <p>Solutions claires, sans jargon.</p>
               </div>
@@ -57,28 +57,28 @@ export default function Home() {
           sur-mesure, traduits et optimisés pour la performance et la gestion simple.
         </p>
 
-          <section aria-labelledby="services" className="mb-6">
+          <section aria-labelledby="services" className="mb-6 flex flex-wrap justify-between gap-6">
          
-          <div className="card card-border bg-base-100 w-full sm:w-96">
-              <div className="card-body">
+          <div className=" flex flex-col card card-border bg-base-100 w-full sm:w-1/2 md:w-1/4">
+              <div className="card-body flex-1">
                 <h4 className="card-title">Conception sur mesure</h4>
                 <p>Interface intuitive, design responsive, code propre.</p>
               </div>
             </div>
-            <div className="card card-border bg-base-100 w-full sm:w-96">
-              <div className="card-body">
+            <div className=" flex flex-col card card-border bg-base-100 w-full sm:w-1/2 md:w-1/4">
+              <div className="card-body flex-1">
                 <h4 className="card-title">Multilingue</h4>
                 <p>Français + 5 langues (Anglais, Arabe, Espagnol, Turc, Italien).</p>
               </div>
             </div>
-            <div className="card card-border bg-base-100 w-full sm:w-96">
-              <div className="card-body">
+            <div className=" flex flex-col card card-border bg-base-100 w-full sm:w-1/2 md:w-1/4">
+              <div className="card-body flex-1">
                 <h4 className="card-title">Hébergement sécurisé</h4>
                 <p>Sauvegardes quotidiennes, SSL, disponibilité garantie.</p>
               </div>
             </div>
-            <div className="card card-border bg-base-100 w-full sm:w-96">
-              <div className="card-body">
+            <div className=" flex flex-col card card-border bg-base-100 w-full sm:w-1/2 md:w-1/4">
+              <div className="card-body flex-1">
                 <h4 className="card-title">Maintenance optionnelle </h4>
                 <p>Mises à jour, Sauvegardes, Petites modifications.</p>
               </div>
@@ -96,12 +96,12 @@ export default function Home() {
             adaptée, rapide et sans jargon.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3">
-          <Link href="/contact" className="btn btn-soft btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">
+          <div className="flex flex-col sm:flex-row gap-6 ">
+          <Link href="/contact" className="btn btn-soft btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl rounded-full">
   Demandez un devis gratuit
 </Link>
 
-<Link href="/prestations" className="btn btn-soft btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">
+<Link href="/prestations" className="btn btn-soft btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl rounded-full">
   Découvrez mes services
 </Link>
 

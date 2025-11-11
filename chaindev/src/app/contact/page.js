@@ -1,10 +1,9 @@
 export default function ContactPage() {
   return (
     <section className="bg-white dark:bg-gray-900 flex flex-col flex-grow min-h-screen">
-      {/* Conteneur avec espacement réduit en haut */}
       <div className="flex flex-col items-center justify-start flex-grow px-4 pt-6 pb-10">
         <div className="w-full max-w-screen-md">
-          <h2 className="mb-3 text-3xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
+          <h2 className="mb-3 text-3xl sm:text-4xl font-extrabold text-center text-gray-900 dark:text-white">
             Contactez-moi
           </h2>
 
@@ -12,12 +11,12 @@ export default function ContactPage() {
             Une question technique ? Un projet multilingue ? Décrivez votre besoin et je reviens vers vous.
           </p>
 
-          {/* Formulaire centré horizontalement, espacement réduit */}
-          <form action="#" className="mx-auto w-full max-w-md space-y-4 flex flex-col items-center">
+          <form action="#" className="mx-auto w-full max-w-md space-y-6 flex flex-col">
+            {/* Email */}
             <div className="w-full">
               <label
                 htmlFor="email"
-                className="block mb-1 text-sm font-medium text-center text-gray-900 dark:text-gray-300"
+                className="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Votre email
               </label>
@@ -27,14 +26,15 @@ export default function ContactPage() {
                 name="email"
                 placeholder="name@example.com"
                 required
-                className="input input-bordered w-full"
+                className="input input-bordered w-full focus:ring-2 focus:ring-primary focus:outline-none transition duration-300"
               />
             </div>
 
+            {/* Objet */}
             <div className="w-full">
               <label
                 htmlFor="subject"
-                className="block mb-1 text-sm font-medium text-center text-gray-900 dark:text-gray-300"
+                className="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Objet
               </label>
@@ -44,14 +44,15 @@ export default function ContactPage() {
                 name="subject"
                 placeholder="Comment puis-je vous aider ?"
                 required
-                className="input input-bordered w-full"
+                className="input input-bordered w-full focus:ring-2 focus:ring-primary focus:outline-none transition duration-300"
               />
             </div>
 
+            {/* Message */}
             <div className="w-full">
               <label
                 htmlFor="message"
-                className="block mb-1 text-sm font-medium text-center text-gray-900 dark:text-gray-300"
+                className="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Votre message
               </label>
@@ -60,12 +61,16 @@ export default function ContactPage() {
                 name="message"
                 rows={6}
                 placeholder="Décrivez votre projet..."
-                className="textarea textarea-bordered w-full"
+                className="textarea textarea-bordered w-full focus:ring-2 focus:ring-primary focus:outline-none transition duration-300"
               />
             </div>
 
+            {/* Bouton */}
             <div className="w-full flex justify-center">
-              <button type="submit" className="btn btn-primary w-full max-w-xs">
+              <button
+                type="submit"
+                className="btn btn-primary w-full max-w-xs hover:scale-105 hover:shadow-lg transition-transform duration-300"
+              >
                 Envoyer
               </button>
             </div>

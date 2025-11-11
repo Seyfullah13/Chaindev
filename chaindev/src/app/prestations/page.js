@@ -1,70 +1,77 @@
 export default function Prestations() {
   const cards = [
     {
-      title: "Premium",
-      price: "$29/mo",
+      title: "Site One Page",
+      price: "à partir de 1000 €",
       features: [
-        "High-resolution image generation",
-        "Customizable style templates",
-        "Batch processing capabilities",
-        "AI-driven image enhancements",
-        "Seamless cloud integration",
-        "Real-time collaboration tools"
-      ],
-      unavailable: [4, 5]
-    },
-    {
-      title: "Standard",
-      price: "$19/mo",
-      features: [
-        "High-resolution image generation",
-        "Customizable style templates",
-        "Batch processing capabilities",
-        "AI-driven image enhancements",
-        "Seamless cloud integration",
-        "Real-time collaboration tools"
-      ],
-      unavailable: [4, 5]
-    },
-    {
-      title: "Basic",
-      price: "$9/mo",
-      features: [
-        "High-resolution image generation",
-        "Customizable style templates",
-        "Batch processing capabilities",
-        "AI-driven image enhancements",
-        "Seamless cloud integration",
-        "Real-time collaboration tools"
-      ],
-      unavailable: [3, 4, 5]
-    },
-    {
-      title: "Enterprise",
-      price: "$59/mo",
-      features: [
-        "High-resolution image generation",
-        "Customizable style templates",
-        "Batch processing capabilities",
-        "AI-driven image enhancements",
-        "Seamless cloud integration",
-        "Real-time collaboration tools",
-        "Priority support"
+        "Design personnalisé aux couleurs de votre marque",
+        "Responsive (mobile & tablette)",
+        "Contenu structuré pour une navigation fluide sur une seule page",
+        "Formulaire de contact intégré",
+        "SEO de base (méta, performance)",
+        "Mise en ligne et configuration du nom de domaine"
       ],
       unavailable: []
     },
     {
-      title: "Custom",
-      price: "Contact us",
+      title: "Site Multi‑pages",
+      price: "à partir de 2000 €",
       features: [
-        "Tailored image generation",
-        "Custom workflows",
-        "Dedicated account manager",
-        "AI-driven enhancements",
-        "Seamless integration",
-        "Team collaboration tools"
+        "Architecture claire : pages dédiées (Accueil, À propos, Services, Contact, etc.)",
+        "Design professionnel et cohérent avec votre identité",
+        "Navigation intuitive et maillage interne optimisé",
+        "Intégration médias (photos, vidéos) et contenus fournis",
+        "Formulaire de contact et liens réseaux sociaux",
+        "Responsive (mobile, tablette, desktop)",
+        "CMS simple pour gérer vos contenus en autonomie"
       ],
       unavailable: []
+    },
+    {
+      title: "Refonte de site",
+      price: "à partir de 2500 €",
+      features: [
+        "Audit complet : design, ergonomie, SEO",
+        "Nouveau design ergonomique et conforme à votre charte",
+        "Réorganisation de l’architecture et du parcours utilisateur",
+        "Optimisation performance et responsive (mobile revu)",
+        "Mise à jour des contenus (textes et visuels)",
+        "SEO on‑site renforcé : balises, titres, SEO technique",
+        "Formation ou documentation pour gérer le site en autonomie"
+      ],
+      unavailable: []
+    },
+    {
+      title: "Site multilingue",
+      price: "à partir de 2500 €",
+      features: [
+        "Installation multilingue (plugin ou config adaptée)",
+        "2 langues (français + 1 langue, extensions possibles)",
+        "Traduction professionnelle ou guide de traduction pour les contenus clés",
+        "SEO multilingue : URL, balises, meta et hreflang optimisés",
+        "Menus et formulaires adaptés par langue ",
+        "Tests qualité sur chaque version",
+        "Formation pour gérer traductions et mises à jour"
+
+
+      ],
+      unavailable: []
+    },
+    {
+      title: "Hébergement & Maintenance",
+      price: " à partir de 50 €/mois",
+      features: [
+        "Hébergement performant avec sauvegardes automatiques",
+        "SSL installé pour sécuriser les échanges",
+        "Maintenance technique : mises à jour CMS, plugins et correctifs",
+        "Monitoring 24/7 et interventions en cas de problème",
+        "Optimisation performance (cache, temps de chargement)",
+        "Support prioritaire pour corrections et petites évolutions"
+      ],
+      unavailable: []
+
+      
+
     }
   ];
 
@@ -106,7 +113,7 @@ export default function Prestations() {
               </ul>
               <div className="mt-6">
                 <button className="btn btn-primary btn-block hover:scale-105 transition-transform duration-300">
-                  {card.price === "Contact us" ? "Contactez-nous" : "Subscribe"}
+                  {card.price === "Contact us" ? "En savoir plus" : "Reservez votre projet"}
                 </button>
               </div>
             </div>

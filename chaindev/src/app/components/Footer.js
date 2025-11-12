@@ -1,27 +1,55 @@
+// components/Footer.jsx
 import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="footer sm:footer-horizontal bg-base-100 text-base-content items-center p-4">
-
-      <aside className="grid-flow-col items-center">
-        <Image src="/icon.jpg" width={40} height={40} alt="logoChaindev" />
-        <p className="transition-colors duration-200">
-          Copyright © {new Date().getFullYear()} - Tous droits réservés
+    <footer
+      className="footer sm:footer-horizontal bg-base-100 text-base-content items-center p-4"
+      role="contentinfo"
+      aria-label="Pied de page"
+    >
+      <div className="flex items-center gap-3">
+        <Image src="/icon.jpg" alt="Logo Chaindev" width={40} height={40} />
+        <p className="text-sm">
+          © {new Date().getFullYear()} Chaindev. Tous droits réservés.
         </p>
-      </aside>
+      </div>
 
-      <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end text-base-content transition-colors duration-200">
-        <a href="https://github.com/Seyfullah13" aria-label="Github">
-          <Image src="/github-icon.svg" width={24} height={24} alt="logoGithub" />
+      <nav
+        className="flex gap-4 md:place-self-center md:justify-self-end"
+        aria-label="Liens réseaux sociaux"
+      >
+        <a
+          href="https://github.com/Seyfullah13"
+          aria-label="Voir mon profil GitHub (ouvre dans un nouvel onglet)"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary rounded"
+        >
+          <span className="sr-only">GitHub</span>
+          <Image src="/github-icon.svg" width={24} height={24} alt="Logo GitHub" />
         </a>
 
-        <a href="https://www.linkedin.com/in/seyfullah-ozdal/" aria-label="LinkedIn">
-          <Image src="/linkedin-icon.svg" width={24} height={24} alt="logoLinkedin" />
+        <a
+          href="https://www.linkedin.com/in/seyfullah-ozdal/"
+          aria-label="Voir mon profil LinkedIn (ouvre dans un nouvel onglet)"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary rounded"
+        >
+          <span className="sr-only">LinkedIn</span>
+          <Image src="/linkedin-icon.svg" width={24} height={24} alt="Logo LinkedIn" />
         </a>
 
-        <a href="https://www.instagram.com/chaindev13/" aria-label="Instagram">
-          <Image src="/instagram-icon.svg" width={24} height={24} alt="logoInstagram" />
+        <a
+          href="https://www.instagram.com/chaindev13/"
+          aria-label="Voir mon profil Instagram (ouvre dans un nouvel onglet)"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary rounded"
+        >
+          <span className="sr-only">Instagram</span>
+          <Image src="/instagram-icon.svg" width={24} height={24} alt="Logo Instagram" />
         </a>
       </nav>
     </footer>

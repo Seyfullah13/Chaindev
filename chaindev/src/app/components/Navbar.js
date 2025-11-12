@@ -1,3 +1,4 @@
+// components/Navbar.jsx
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -6,7 +7,36 @@ import logo from "../icon.jpg";
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [theme, setTheme] = useState("light"); // 'light' | 'dark'
   const dropdownRef = useRef(null);
+  const menuId = "mobile-menu";
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const saved = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initial = saved === "dark" || (!saved && prefersDark) ? "dark" : "light";
+    setTheme(initial);
+    applyTheme(initial);
+  }, []);
+
+  function applyTheme(value) {
+    if (typeof document === "undefined") return;
+    if (value === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  }
+
+  function toggleTheme() {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    applyTheme(next);
+  }
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -14,95 +44,106 @@ export default function Navbar() {
         setIsDropdownOpen(false);
       }
     }
+    function handleKeyDown(e) {
+      if (e.key === "Escape") setIsDropdownOpen(false);
+    }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   const linkCommonClasses =
-    "px-3 py-2 rounded-md transition transform duration-150 ease-in-out " +
-    "hover:bg-neutral hover:text-neutral-content hover:scale-102 hover:shadow-sm " +
-    "hover:underline hover:underline-offset-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral";
+    "px-3 py-2 rounded-md transition transform duration-150 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral";
 
   return (
-    <div className="navbar bg-base-100 shadow-sm px-6 py-3 flex items-center">
+    <header>
+      <nav
+        className="navbar bg-base-100 shadow-sm px-6 py-3 flex items-center transition-colors duration-300"
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <div className="navbar-start flex items-center">
+          <a href="/" aria-label="Accueil" className="inline-flex items-center ml-2">
+            <Image src={logo} alt="Logo Chaindev" width={42} height={42} />
+          </a>
+        </div>
 
-      {/* Logo */}
-      <div className="navbar-start flex items-center">
-        <a href="./" aria-label="Accueil" className="inline-flex items-center ml-2">
-          <Image src={logo} alt="logoChaindev" width={42} height={42} />
-        </a>
-      </div>
-
-      {/* Liens desktop */}
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 text-base-content transition-colors duration-200 flex items-center space-x-1">
-          <li><a className={linkCommonClasses} href="../whoami">Qui suis-je?</a></li>
-          <li><a className={linkCommonClasses} href="../prestations">Prestations</a></li>
-          <li><a className={linkCommonClasses} href="https://www.seyfullah-ozdal.fr">Portfolio</a></li>
-          <li><a className={linkCommonClasses} href="../contact">Contact</a></li>
-        </ul>
-      </div>
-
-      {/* Partie droite */}
-      <div className="navbar-end flex items-center space-x-4 mr-2">
-
-        {/* Switch de thème */}
-        <label className="toggle text-base-content flex items-center cursor-pointer transition-transform duration-150 hover:scale-105 active:scale-95">
-          <input type="checkbox" value="dark" className="theme-controller" aria-label="Basculer thème" />
-          <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
-            <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
-              <circle cx="12" cy="12" r="4"></circle>
-              <path d="M12 2v2"></path>
-              <path d="M12 20v2"></path>
-              <path d="m4.93 4.93 1.41 1.41"></path>
-              <path d="m17.66 17.66 1.41 1.41"></path>
-              <path d="M2 12h2"></path>
-              <path d="M20 12h2"></path>
-              <path d="m6.34 17.66-1.41 1.41"></path>
-              <path d="m19.07 4.93-1.41 1.41"></path>
-            </g>
-          </svg>
-          <svg aria-label="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
-            <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
-              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-            </g>
-          </svg>
-        </label>
-
-        {/* Menu mobile */}
-        <div className="dropdown dropdown-end lg:hidden" ref={dropdownRef}>
-          <button
-            type="button"
-            aria-haspopup="true"
-            aria-expanded={isDropdownOpen}
-            onClick={() => setIsDropdownOpen((s) => !s)}
-            className="btn btn-ghost p-2 flex items-center"
-            aria-label={isDropdownOpen ? "Fermer le menu" : "Ouvrir le menu"}
-          >
-            {!isDropdownOpen ? (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-150" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transform transition-transform duration-150" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M12.293 16.293a1 1 0 010-1.414L15.586 11H4a1 1 0 110-2h11.586l-3.293-3.293a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clipRule="evenodd" />
-              </svg>
-            )}
-          </button>
-
+        <div className="navbar-center hidden lg:flex">
           <ul
-            className={`menu menu-sm dropdown-content bg-base-100 rounded-box mt-1 w-52 p-2 shadow text-base-content transition-all duration-150 origin-top-right ${
-              isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
-            }`}
-            role="menu"
+            className="menu menu-horizontal px-1 text-base-content flex items-center space-x-1"
+            role="menubar"
+            aria-label="Menu principal"
           >
-            <li><a role="menuitem" className={linkCommonClasses} href="../whoami">Qui suis-je?</a></li>
-            <li><a role="menuitem" className={linkCommonClasses} href="../prestations">Prestations</a></li>
-            <li><a role="menuitem" className={linkCommonClasses} href="https://www.seyfullah-ozdal.fr">Portfolio</a></li>
-            <li><a role="menuitem" className={linkCommonClasses} href="../contact">Contact</a></li>
+            <li role="none"><a role="menuitem" className={linkCommonClasses} href="/whoami">Qui suis-je?</a></li>
+            <li role="none"><a role="menuitem" className={linkCommonClasses} href="/prestations">Prestations</a></li>
+            <li role="none"><a role="menuitem" className={linkCommonClasses} href="https://www.seyfullah-ozdal.fr" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
+            <li role="none"><a role="menuitem" className={linkCommonClasses} href="/contact">Contact</a></li>
           </ul>
         </div>
-      </div>
-    </div>
+
+        <div className="navbar-end flex items-center space-x-4 mr-2">
+          {/* Theme switch — accessible + animé */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-pressed={theme === "dark"}
+            aria-label={theme === "dark" ? "Activer thème clair" : "Activer thème sombre"}
+            className="relative inline-flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
+          >
+            <span className="sr-only">Basculer thème</span>
+
+            {/* Track */}
+            <span
+              className={`inline-block w-12 h-7 rounded-full transition-colors duration-300
+                ${theme === "dark" ? "bg-primary" : "bg-gray-300"}`}
+              aria-hidden="true"
+            />
+
+            {/* Knob */}
+            <span
+              className={`absolute left-0 top-0.5 w-6 h-6 rounded-full bg-white shadow transform transition-transform duration-300
+                ${theme === "dark" ? "translate-x-5" : "translate-x-0"}`}
+              aria-hidden="true"
+              style={{ marginLeft: 2 }}
+            />
+          </button>
+
+          {/* Mobile menu */}
+          <div className="dropdown dropdown-end lg:hidden" ref={dropdownRef}>
+            <button
+              type="button"
+              aria-haspopup="true"
+              aria-expanded={isDropdownOpen}
+              aria-controls={menuId}
+              onClick={() => setIsDropdownOpen((s) => !s)}
+              className="btn btn-ghost p-2"
+            >
+              <span className="sr-only">{isDropdownOpen ? "Fermer le menu" : "Ouvrir le menu"}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {isDropdownOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+
+            <ul
+              id={menuId}
+              role="menu"
+              className={`menu menu-sm dropdown-content bg-base-100 rounded-box mt-1 w-52 p-2 shadow text-base-content transition-all duration-150 origin-top-right ${isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}
+            >
+              <li role="none"><a role="menuitem" className={linkCommonClasses} href="/whoami">Qui suis-je?</a></li>
+              <li role="none"><a role="menuitem" className={linkCommonClasses} href="/prestations">Prestations</a></li>
+              <li role="none"><a role="menuitem" className={linkCommonClasses} href="https://www.seyfullah-ozdal.fr" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
+              <li role="none"><a role="menuitem" className={linkCommonClasses} href="/contact">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
   );
 }

@@ -1,3 +1,6 @@
+// components/Prestations.jsx
+"use client";
+
 import Link from "next/link";
 
 export default function Prestations() {
@@ -11,7 +14,7 @@ export default function Prestations() {
         "Contenu structuré pour une navigation fluide sur une seule page",
         "Formulaire de contact intégré",
         "SEO de base (méta, performance)",
-        "Mise en ligne et configuration du nom de domaine"
+        "Mise en ligne et configuration du nom de domaine",
       ],
     },
     {
@@ -24,7 +27,7 @@ export default function Prestations() {
         "Intégration médias",
         "Formulaire contact",
         "Responsive multi-device",
-        "CMS simplifié"
+        "CMS simplifié",
       ],
     },
     {
@@ -37,7 +40,7 @@ export default function Prestations() {
         "Performance renforcée",
         "Mise à jour contenus",
         "SEO technique",
-        "Formation"
+        "Formation",
       ],
     },
     {
@@ -50,7 +53,7 @@ export default function Prestations() {
         "SEO hreflang",
         "Menus/formulaires par langue",
         "Tests par version",
-        "Formation traduction"
+        "Formation traduction",
       ],
     },
     {
@@ -62,93 +65,91 @@ export default function Prestations() {
         "Mises à jour CMS",
         "Monitoring 24/7",
         "Optimisation cache",
-        "Support prioritaire"
+        "Support prioritaire",
       ],
     },
   ];
 
   return (
     <section className="bg-base-200 py-12 flex flex-col items-center">
-      <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-center animate-fade">
+      <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-center text-base-content">
         Mes Prestations
       </h2>
 
-      <div className="flex flex-wrap justify-center gap-8">
-        {cards.map((card, idx) => (
-          <div
-            key={idx}
-            className="
-              card w-full sm:w-80 md:w-96 bg-base-100
-              shadow-md transition-all duration-500
-              hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/30
-              animate-fade-up
-            "
-            style={{ animationDelay: `${idx * 120}ms` }}
-          >
-            <div className="card-body flex flex-col">
-              <div className="flex justify-between items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-7xl px-4">
+        {cards.map((card, idx) => {
+          const cardId = `prestation-${idx}`;
+          const descId = `${cardId}-desc`;
+
+          return (
+            <article
+              key={cardId}
+              id={cardId}
+              role="group"
+              tabIndex={0}
+              aria-labelledby={`${cardId}-title`}
+              aria-describedby={descId}
+              className="
+                bg-base-100 rounded-lg p-6
+                shadow-md transition-transform transition-shadow duration-300
+                hover:shadow-2xl hover:-translate-y-2 hover:ring-4 hover:ring-primary/40
+                hover:bg-gradient-to-br hover:from-primary/5 hover:to-primary/10
+                focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+                active:scale-95
+                w-full
+              "
+            >
+              <header className="flex justify-between items-start gap-4">
                 <h3
-                  className="
-                    text-2xl font-bold transition-colors duration-300
-                    hover:text-primary
-                  "
+                  id={`${cardId}-title`}
+                  className="text-2xl font-bold text-base-content"
                 >
                   {card.title}
                 </h3>
-                <span className="text-lg font-semibold">{card.price}</span>
-              </div>
+                <span className="text-lg font-semibold text-base-content">
+                  {card.price}
+                </span>
+              </header>
 
-              <ul className="mt-6 flex flex-col gap-2 text-sm">
+              <ul
+                id={descId}
+                className="mt-4 space-y-2 text-sm text-base-content"
+                aria-label={`${card.title} - caractéristiques`}
+              >
                 {card.features.map((feature, i) => (
-                  <li
-                    key={i}
-                    className="
-                      flex items-center gap-2
-                      transition-all duration-300
-                      hover:translate-x-1
-                    "
-                  >
+                  <li key={i} className="flex items-start gap-2">
                     <svg
+                      aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="
-                        w-4 h-4 text-success
-                        transition-transform duration-300
-                      "
+                      className="w-4 h-4 text-success mt-1 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M5 13l4 4L19 7"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>{feature}</span>
+                    <span className="text-base-content">{feature}</span>
                   </li>
                 ))}
               </ul>
 
               <div className="mt-6">
-                <Link href="/contact">
+                <Link
+                  href="/contact"
+                  aria-label={`${card.title} - contacter`}
+                  className="inline-block w-full"
+                >
                   <button
-                    className="
-                      btn btn-primary btn-block
-                      hover:scale-105 hover:shadow-lg
-                      active:scale-95
-                      transition-all duration-300
-                    "
+                    type="button"
+                    className="btn btn-primary w-full text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   >
-                    {card.title === "Hébergement & Maintenance"
-                      ? "En savoir plus"
-                      : "Réservez votre projet"}
+                    {card.title === "Hébergement & Maintenance" ? "En savoir plus" : "Réservez votre projet"}
                   </button>
                 </Link>
               </div>
-            </div>
-          </div>
-        ))}
+            </article>
+          );
+        })}
       </div>
     </section>
   );

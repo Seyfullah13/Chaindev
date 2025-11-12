@@ -138,7 +138,6 @@ export default function Prestations() {
                       hover:scale-105 hover:shadow-lg
                       active:scale-95
                       transition-all duration-300
-                      animate-pulse hover:animate-none
                     "
                   >
                     {card.title === "Hébergement & Maintenance"

@@ -13,7 +13,7 @@ export default function WhoAmI() {
             const index = Number(entry.target.getAttribute("data-index") || 0);
             setTimeout(() => {
               entry.target.classList.add("opacity-100", "translate-y-0");
-            }, index * 150); // délai de 150ms par card
+            }, index * 150);
             observer.unobserve(entry.target);
           }
         });
@@ -52,11 +52,11 @@ export default function WhoAmI() {
                 <header className="mb-8">
                   <h1
                     id="whoami-title"
-                    className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900"
+                    className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-base-content"
                   >
                     Qui suis-je ?
                   </h1>
-                  <p className={`${fadeCardClasses} text-lg md:text-xl leading-7 text-gray-900`}>
+                  <p className={`${fadeCardClasses} text-lg md:text-xl leading-7 text-base-content`}>
                     Développeur web freelance basé à <strong>Clermont-Ferrand</strong>, je conçois des{" "}
                     <strong>sites vitrines</strong> et <strong>applications sur-mesure</strong>, performants et
                     faciles à gérer. Ancien professionnel de la logistique et de la grande distribution,
@@ -69,11 +69,11 @@ export default function WhoAmI() {
                 <section className="mb-8" aria-labelledby="competences-title">
                   <h2
                     id="competences-title"
-                    className={`${fadeCardClasses} text-2xl md:text-3xl font-semibold mb-4 text-gray-900`}
+                    className={`${fadeCardClasses} text-2xl md:text-3xl font-semibold mb-4 text-base-content`}
                   >
                     Compétences clés
                   </h2>
-                  <ul className="grid gap-3 text-gray-900">
+                  <ul className="grid gap-3">
                     {[
                       "Développement fullstack : code propre, sécurisé et maintenable.",
                       "Multilingue : français, anglais, espagnol, italien et turc.",
@@ -83,9 +83,9 @@ export default function WhoAmI() {
                       <li
                         key={i}
                         tabIndex={0}
-                        className={`${fadeCardClasses} card card-compact bg-base-200 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 hover:shadow-md transition-shadow cursor-pointer`}
+                        className={`${fadeCardClasses} card card-compact bg-base-100 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 hover:shadow-md transition-shadow cursor-pointer`}
                       >
-                        <p className="text-base leading-7 m-0">{item}</p>
+                        <p className="text-base leading-7 m-0 text-base-content">{item}</p>
                       </li>
                     ))}
                   </ul>
@@ -95,11 +95,11 @@ export default function WhoAmI() {
                 <section className="mb-8" aria-labelledby="parcours-title">
                   <h2
                     id="parcours-title"
-                    className={`${fadeCardClasses} text-2xl md:text-3xl font-semibold mb-4 text-gray-900`}
+                    className={`${fadeCardClasses} text-2xl md:text-3xl font-semibold mb-4 text-base-content`}
                   >
                     Parcours en bref
                   </h2>
-                  <p className={`${fadeCardClasses} text-lg leading-7 text-gray-900`}>
+                  <p className={`${fadeCardClasses} text-lg leading-7 text-base-content`}>
                     Immersion en <strong>agence web (2022)</strong>, formation{" "}
                     <strong>Développeur Web et Web Mobile (AFPA, 2024)</strong>. Expériences passées en
                     logistique, vente et maintenance renforçant mon <strong>organisation</strong> et ma{" "}
@@ -111,7 +111,7 @@ export default function WhoAmI() {
                 <section className="mb-8" aria-labelledby="valeurs-title">
                   <h2
                     id="valeurs-title"
-                    className={`${fadeCardClasses} text-2xl md:text-3xl font-semibold mb-4 text-gray-900`}
+                    className={`${fadeCardClasses} text-2xl md:text-3xl font-semibold mb-4 text-base-content`}
                   >
                     Valeurs
                   </h2>
@@ -125,10 +125,10 @@ export default function WhoAmI() {
                       <div
                         key={i}
                         tabIndex={0}
-                        className={`${fadeCardClasses} card bg-base-200 p-4 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 hover:shadow-md transition-shadow cursor-pointer`}
+                        className={`${fadeCardClasses} card bg-base-100 p-4 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 hover:shadow-md transition-shadow cursor-pointer`}
                       >
-                        <h3 className="font-semibold mb-1 text-lg">{val.title}</h3>
-                        <p className="text-base leading-7 m-0">{val.desc}</p>
+                        <h3 className="font-semibold mb-1 text-lg text-base-content">{val.title}</h3>
+                        <p className="text-base leading-7 m-0 text-base-content">{val.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -137,7 +137,7 @@ export default function WhoAmI() {
             </article>
 
             {/* Ligne verticale */}
-            <div className="hidden lg:block absolute top-0 bottom-0 left-[66.6667%] w-px bg-gray-300"></div>
+            <div className="hidden lg:block absolute top-0 bottom-0 left-[66.6667%] w-px bg-base-content/30"></div>
 
             {/* Images droite */}
             <aside

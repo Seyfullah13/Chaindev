@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui";
-
+@import "react-phone-number-input/style.css";
 /* Tailwind + DaisyUI */
 .text-base-content, .menu a {
     @apply transition-colors duration-200;

@@ -2,24 +2,29 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import logo from "../icon.jpg";
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [theme, setTheme] = useState("light"); // 'light' | 'dark'
+  // compute initial theme once (client-only safe check)
+  const [theme, setTheme] = useState(() => {
+    try {
+      if (typeof window === "undefined") return "light";
+      const saved = localStorage.getItem("theme");
+      const prefersDark =
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      return saved === "dark" || (!saved && prefersDark) ? "dark" : "light";
+    } catch (e) {
+      return "light";
+    }
+  });
+
   const dropdownRef = useRef(null);
   const menuId = "mobile-menu";
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const saved = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initial = saved === "dark" || (!saved && prefersDark) ? "dark" : "light";
-    setTheme(initial);
-    applyTheme(initial);
-  }, []);
-
+  // helper to apply theme to document
   function applyTheme(value) {
     if (typeof document === "undefined") return;
     if (value === "dark") {
@@ -31,11 +36,20 @@ export default function Navbar() {
     }
   }
 
+  // ensure DOM class reflects the current theme (runs after initial render)
+  useEffect(() => {
+    applyTheme(theme);
+  }, [theme]);
+
   function toggleTheme() {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
-    try { localStorage.setItem("theme", next); } catch (e) {}
-    applyTheme(next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch (e) {
+      /* ignore */
+    }
+    // applyTheme(next); // optional, effect will handle it, but calling here is fine too
   }
 
   useEffect(() => {
@@ -66,9 +80,9 @@ export default function Navbar() {
         aria-label="Main navigation"
       >
         <div className="navbar-start flex items-center">
-          <a href="/" aria-label="Accueil" className="inline-flex items-center ml-2">
-            <Image src={logo} alt="Logo Chaindev" width={42} height={42} />
-          </a>
+          <Link href="/" aria-label="Accueil" className="inline-flex items-center ml-2">
+            <Image src={logo} alt="Logo Chaindev" width={42} height={42} loading="eager" priority />
+          </Link>
         </div>
 
         <div className="navbar-center hidden lg:flex">
@@ -77,15 +91,36 @@ export default function Navbar() {
             role="menubar"
             aria-label="Menu principal"
           >
-            <li role="none"><a role="menuitem" className={linkCommonClasses} href="/whoami">Qui suis-je?</a></li>
-            <li role="none"><a role="menuitem" className={linkCommonClasses} href="/prestations">Prestations</a></li>
-            <li role="none"><a role="menuitem" className={linkCommonClasses} href="https://www.seyfullah-ozdal.fr" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
-            <li role="none"><a role="menuitem" className={linkCommonClasses} href="/contact">Contact</a></li>
+            <li role="none">
+              <Link role="menuitem" className={linkCommonClasses} href="/whoami">
+                Qui suis-je?
+              </Link>
+            </li>
+            <li role="none">
+              <Link role="menuitem" className={linkCommonClasses} href="/prestations">
+                Prestations
+              </Link>
+            </li>
+            <li role="none">
+              <a
+                role="menuitem"
+                className={linkCommonClasses}
+                href="https://www.seyfullah-ozdal.fr"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Portfolio
+              </a>
+            </li>
+            <li role="none">
+              <Link role="menuitem" className={linkCommonClasses} href="/contact">
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
 
         <div className="navbar-end flex items-center space-x-4 mr-2">
-          {/* Theme switch — accessible + animé */}
           <button
             type="button"
             onClick={toggleTheme}
@@ -95,23 +130,22 @@ export default function Navbar() {
           >
             <span className="sr-only">Basculer thème</span>
 
-            {/* Track */}
             <span
-              className={`inline-block w-12 h-7 rounded-full transition-colors duration-300
-                ${theme === "dark" ? "bg-primary" : "bg-gray-300"}`}
+              className={`inline-block w-12 h-7 rounded-full transition-colors duration-300 ${
+                theme === "dark" ? "bg-primary" : "bg-gray-300"
+              }`}
               aria-hidden="true"
             />
 
-            {/* Knob */}
             <span
-              className={`absolute left-0 top-0.5 w-6 h-6 rounded-full bg-white shadow transform transition-transform duration-300
-                ${theme === "dark" ? "translate-x-5" : "translate-x-0"}`}
+              className={`absolute left-0 top-0.5 w-6 h-6 rounded-full bg-white shadow transform transition-transform duration-300 ${
+                theme === "dark" ? "translate-x-5" : "translate-x-0"
+              }`}
               aria-hidden="true"
               style={{ marginLeft: 2 }}
             />
           </button>
 
-          {/* Mobile menu */}
           <div className="dropdown dropdown-end lg:hidden" ref={dropdownRef}>
             <button
               type="button"
@@ -122,7 +156,7 @@ export default function Navbar() {
               className="btn btn-ghost p-2"
             >
               <span className="sr-only">{isDropdownOpen ? "Fermer le menu" : "Ouvrir le menu"}</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 {isDropdownOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 ) : (
@@ -134,12 +168,30 @@ export default function Navbar() {
             <ul
               id={menuId}
               role="menu"
-              className={`menu menu-sm dropdown-content bg-base-100 rounded-box mt-1 w-52 p-2 shadow text-base-content transition-all duration-150 origin-top-right ${isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}
+              className={`menu menu-sm dropdown-content bg-base-100 rounded-box mt-1 w-52 p-2 shadow text-base-content transition-all duration-150 origin-top-right ${
+                isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
+              }`}
             >
-              <li role="none"><a role="menuitem" className={linkCommonClasses} href="/whoami">Qui suis-je?</a></li>
-              <li role="none"><a role="menuitem" className={linkCommonClasses} href="/prestations">Prestations</a></li>
-              <li role="none"><a role="menuitem" className={linkCommonClasses} href="https://www.seyfullah-ozdal.fr" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
-              <li role="none"><a role="menuitem" className={linkCommonClasses} href="/contact">Contact</a></li>
+              <li role="none">
+                <Link role="menuitem" className={linkCommonClasses} href="/whoami">
+                  Qui suis-je?
+                </Link>
+              </li>
+              <li role="none">
+                <Link role="menuitem" className={linkCommonClasses} href="/prestations">
+                  Prestations
+                </Link>
+              </li>
+              <li role="none">
+                <a role="menuitem" className={linkCommonClasses} href="https://www.seyfullah-ozdal.fr" target="_blank" rel="noopener noreferrer">
+                  Portfolio
+                </a>
+              </li>
+              <li role="none">
+                <Link role="menuitem" className={linkCommonClasses} href="/contact">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

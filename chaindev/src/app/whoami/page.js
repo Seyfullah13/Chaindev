@@ -6,6 +6,8 @@ import { useEffect } from "react";
 export default function WhoAmI() {
   useEffect(() => {
     const cards = document.querySelectorAll(".fade-card");
+    if (!cards || cards.length === 0) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -25,6 +27,14 @@ export default function WhoAmI() {
       card.setAttribute("data-index", i.toString());
       observer.observe(card);
     });
+
+    return () => {
+      try {
+        observer.disconnect();
+      } catch (e) {
+        /* ignore */
+      }
+    };
   }, []);
 
   const fadeCardClasses =
@@ -45,7 +55,6 @@ export default function WhoAmI() {
       >
         <div className="max-w-7xl w-full mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative">
-
             {/* Texte gauche */}
             <article className="lg:col-span-8 w-full">
               <div className="px-0 md:px-0 max-w-3xl">
@@ -169,7 +178,6 @@ export default function WhoAmI() {
                 </figure>
               </div>
             </aside>
-
           </div>
         </div>
       </section>

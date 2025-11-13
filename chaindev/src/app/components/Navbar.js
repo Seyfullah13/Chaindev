@@ -1,4 +1,3 @@
-// components/Navbar.jsx
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -6,9 +5,16 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../icon.jpg";
 
+function useMounted() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return mounted;
+}
+
 export default function Navbar() {
+  const mounted = useMounted();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  // compute initial theme once (client-only safe check)
+
   const [theme, setTheme] = useState(() => {
     try {
       if (typeof window === "undefined") return "light";
@@ -24,7 +30,6 @@ export default function Navbar() {
   const dropdownRef = useRef(null);
   const menuId = "mobile-menu";
 
-  // helper to apply theme to document
   function applyTheme(value) {
     if (typeof document === "undefined") return;
     if (value === "dark") {
@@ -36,7 +41,6 @@ export default function Navbar() {
     }
   }
 
-  // ensure DOM class reflects the current theme (runs after initial render)
   useEffect(() => {
     applyTheme(theme);
   }, [theme]);
@@ -46,10 +50,7 @@ export default function Navbar() {
     setTheme(next);
     try {
       localStorage.setItem("theme", next);
-    } catch (e) {
-      /* ignore */
-    }
-    // applyTheme(next); // optional, effect will handle it, but calling here is fine too
+    } catch (e) {}
   }
 
   useEffect(() => {
@@ -91,60 +92,29 @@ export default function Navbar() {
             role="menubar"
             aria-label="Menu principal"
           >
-            <li role="none">
-              <Link role="menuitem" className={linkCommonClasses} href="/whoami">
-                Qui suis-je?
-              </Link>
-            </li>
-            <li role="none">
-              <Link role="menuitem" className={linkCommonClasses} href="/prestations">
-                Prestations
-              </Link>
-            </li>
-            <li role="none">
-              <a
-                role="menuitem"
-                className={linkCommonClasses}
-                href="https://www.seyfullah-ozdal.fr"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Portfolio
-              </a>
-            </li>
-            <li role="none">
-              <Link role="menuitem" className={linkCommonClasses} href="/contact">
-                Contact
-              </Link>
-            </li>
+            <li role="none"><Link role="menuitem" className={linkCommonClasses} href="/whoami">Qui suis-je?</Link></li>
+            <li role="none"><Link role="menuitem" className={linkCommonClasses} href="/prestations">Prestations</Link></li>
+            <li role="none"><a role="menuitem" className={linkCommonClasses} href="https://www.seyfullah-ozdal.fr" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
+            <li role="none"><Link role="menuitem" className={linkCommonClasses} href="/contact">Contact</Link></li>
           </ul>
         </div>
 
         <div className="navbar-end flex items-center space-x-4 mr-2">
-          <button
-            type="button"
-            onClick={toggleTheme}
-            aria-pressed={theme === "dark"}
-            aria-label={theme === "dark" ? "Activer thème clair" : "Activer thème sombre"}
-            className="relative inline-flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
-          >
-            <span className="sr-only">Basculer thème</span>
-
-            <span
-              className={`inline-block w-12 h-7 rounded-full transition-colors duration-300 ${
-                theme === "dark" ? "bg-primary" : "bg-gray-300"
-              }`}
-              aria-hidden="true"
-            />
-
-            <span
-              className={`absolute left-0 top-0.5 w-6 h-6 rounded-full bg-white shadow transform transition-transform duration-300 ${
-                theme === "dark" ? "translate-x-5" : "translate-x-0"
-              }`}
-              aria-hidden="true"
-              style={{ marginLeft: 2 }}
-            />
-          </button>
+          {!mounted ? (
+            <button aria-hidden="true" className="relative inline-flex items-center opacity-0 pointer-events-none w-12 h-7" />
+          ) : (
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-pressed={theme === "dark"}
+              aria-label={theme === "dark" ? "Activer thème clair" : "Activer thème sombre"}
+              className="relative inline-flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
+            >
+              <span className="sr-only">Basculer thème</span>
+              <span className={`inline-block w-12 h-7 rounded-full transition-colors duration-300 ${theme === "dark" ? "bg-primary" : "bg-gray-300"}`} aria-hidden="true" />
+              <span className={`absolute left-0 top-0.5 w-6 h-6 rounded-full bg-white shadow transform transition-transform duration-300 ${theme === "dark" ? "translate-x-5" : "translate-x-0"}`} aria-hidden="true" style={{ marginLeft: 2 }} />
+            </button>
+          )}
 
           <div className="dropdown dropdown-end lg:hidden" ref={dropdownRef}>
             <button
@@ -168,30 +138,12 @@ export default function Navbar() {
             <ul
               id={menuId}
               role="menu"
-              className={`menu menu-sm dropdown-content bg-base-100 rounded-box mt-1 w-52 p-2 shadow text-base-content transition-all duration-150 origin-top-right ${
-                isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
-              }`}
+              className={`menu menu-sm dropdown-content bg-base-100 rounded-box mt-1 w-52 p-2 shadow text-base-content transition-all duration-150 origin-top-right ${isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}
             >
-              <li role="none">
-                <Link role="menuitem" className={linkCommonClasses} href="/whoami">
-                  Qui suis-je?
-                </Link>
-              </li>
-              <li role="none">
-                <Link role="menuitem" className={linkCommonClasses} href="/prestations">
-                  Prestations
-                </Link>
-              </li>
-              <li role="none">
-                <a role="menuitem" className={linkCommonClasses} href="https://www.seyfullah-ozdal.fr" target="_blank" rel="noopener noreferrer">
-                  Portfolio
-                </a>
-              </li>
-              <li role="none">
-                <Link role="menuitem" className={linkCommonClasses} href="/contact">
-                  Contact
-                </Link>
-              </li>
+              <li role="none"><Link role="menuitem" className={linkCommonClasses} href="/whoami">Qui suis-je?</Link></li>
+              <li role="none"><Link role="menuitem" className={linkCommonClasses} href="/prestations">Prestations</Link></li>
+              <li role="none"><a role="menuitem" className={linkCommonClasses} href="https://www.seyfullah-ozdal.fr" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
+              <li role="none"><Link role="menuitem" className={linkCommonClasses} href="/contact">Contact</Link></li>
             </ul>
           </div>
         </div>

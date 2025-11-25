@@ -1,0 +1,62 @@
+version: 1
+
+rules:
+  - name: "Next.js & React Components"
+    priority: high
+    triggers: ["diff", "pull_request"]
+    instructions: |
+      Vérifier :
+      - la distinction correcte entre Server Components et Client Components.
+      - l’utilisation cohérente de `"use client"` uniquement si nécessaire.
+      - que les composants sont découpés proprement (SRP).
+      - que les effets React (useEffect) ne remplacent pas des fonctionnalités côté serveur.
+
+  - name: "TypeScript Safety"
+    priority: high
+    instructions: |
+      Vérifier :
+      - que tous les composants, fonctions et props sont typés.
+      - l’absence de `any` ou `as` non nécessaires.
+      - l’utilisation correcte de types Next.js (`Metadata`, `NextApiRequest`, `NextApiResponse`, etc.).
+      - que les types globaux sont centralisés lorsque possible.
+
+  - name: "Tailwind CSS"
+    priority: medium
+    instructions: |
+      Vérifier :
+      - qu’il n’y a pas de classes Tailwind inutilisées ou dupliquées.
+      - que les classes restent lisibles, groupées et cohérentes.
+      - éviter la surcharge excessive de classes (préférer composants réutilisables si trop long).
+
+  - name: "Next.js App Router Structure"
+    priority: high
+    instructions: |
+      Vérifier :
+      - que la structure `app/` respecte conventions (layout, page, loading, error).
+      - que les métadonnées sont définies via `export const metadata`.
+      - que les fetchs côté serveur utilisent `fetch()` avec options de cache adaptées.
+      - que les route handlers (`app/api/.../route.ts`) sont sécurisés (validation d’input).
+
+  - name: "Performance & Best Practices"
+    priority: medium
+    instructions: |
+      Vérifier :
+      - que les images utilisent `<Image />` et tailles optimisées.
+      - que les imports ne chargent pas inutilement des librairies côté client.
+      - l’usage correct du streaming, suspense éventuel et du rendu server-first.
+      - l’absence de heavy computing dans les composants client.
+
+  - name: "Security (API Routes / Server Actions)"
+    priority: high
+    instructions: |
+      Vérifier :
+      - la validation des inputs (Zod ou autre).
+      - aucun accès direct non vérifié à la DB.
+      - pas de secrets exposés dans le frontend.
+      - utilisation correcte des cookies sécurisés et server actions.
+
+review:
+  max_comments: 80
+  comment_style: "smart"
+  suggestions: true
+  language: "fr"
